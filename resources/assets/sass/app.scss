@@ -1,0 +1,88 @@
+body {
+	font-family: 'Lato';
+	font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-transform: uppercase;
+}
+
+ul {
+	list-style: none;
+}
+
+.Item {
+	position: relative;
+}
+
+.Item__info {
+    position: absolute;
+    top: 15px;
+    background: rgba(255,255,255,1);
+    padding: 5px 10px;
+}
+
+.Item--new {
+    left: 30px;
+    span {
+    	font-weight: bold;
+    	text-transform: uppercase;
+    }
+}
+
+.Item--onsale {
+    right: 30px;
+    span {
+    	color: red;
+    }
+}
+
+.Item__content {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.Item__name {
+	color: #000;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: normal;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 10px;
+	// Truncate text
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.Item__price {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	& > * {
+		margin: 0px 8px;
+	}
+}
+
+.Item__price--new {
+	color: #cc0000;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.Item__price--old {
+	color: #999;
+	text-decoration: line-through;
+}
+
+.Item__action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

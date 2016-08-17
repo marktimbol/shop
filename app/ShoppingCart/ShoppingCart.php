@@ -13,7 +13,7 @@ class ShoppingCart
 
 	public function store(Item $item)
 	{
-		Cart::add($item->id, $item->name, 1, $item->price);
+		Cart::add($item->id, $item->name, 1, $item->price, ['item' => $item]);
 	}
 
 	public function subtotal()

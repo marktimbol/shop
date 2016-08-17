@@ -6838,6 +6838,30 @@ ul {
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center; }
+  .Item__action button {
+    text-transform: uppercase; }
+
+.price {
+  color: #cc0000;
+  font-weight: bold; }
+
+.Cart .table th {
+  text-transform: uppercase; }
+
+.Cart .table td {
+  padding: 20px; }
+
+.Cart__item {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 22px;
+  text-transform: capitalize; }
+  .Cart__item a {
+    color: black;
+    text-decoration: none; }
+    .Cart__item a:hover {
+      color: #999;
+      text-decoration: none; }
 
 /*# sourceMappingURL=app.css.map */
 

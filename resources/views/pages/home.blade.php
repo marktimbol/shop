@@ -13,7 +13,10 @@
 					</div> --}}
 					<div class="Item__image">
 						<a href="{{ route('items.show', $item->slug) }}">
-							<img src="https://placeholdit.imgix.net/~text?txtsize=51&txt=540%C3%97714&w=540&h=714" alt="{{ $item->name }}" title="{{ $item->name }}" class="img-responsive" />
+							<img src="/images/watch.jpg" 
+								alt="{{ $item->name }}" 
+								title="{{ $item->name }}" 
+								class="img-responsive" />
 						</a>
 					</div>
 

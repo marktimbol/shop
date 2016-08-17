@@ -12,10 +12,16 @@
 */
 
 Route::get('/', 'PagesController@home');
+Route::get('items/{items}', ['as' => 'items.show', 'uses' => 'ItemsController@show']);
 
 Route::get('cart', ['as' => 'cart.index', 'uses' => 'CartController@index']);
 Route::post('cart', ['as' => 'cart.store', 'uses' => 'CartController@store']);
-Route::get('items/{items}', ['as' => 'items.show', 'uses' => 'ItemsController@show']);
+Route::get('checkout', ['as' => 'checkout', 'uses' => 'CheckoutController@index']);
+Route::post('checkout', 'CheckoutController@store');
+Route::get('checkout/success', [
+	'as' => 'checkout.success', 
+	'uses' => 'CheckoutSuccessController@index'
+]);
 
 Route::auth();
 Route::get('/home', 'HomeController@index');

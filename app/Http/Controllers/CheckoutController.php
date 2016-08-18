@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserPlacedAnOrder;
 use App\Http\Requests;
 use App\ShoppingCart\ShoppingCart;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Mail;
 
 class CheckoutController extends Controller
 {
@@ -24,7 +26,7 @@ class CheckoutController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {                
     	// Register the user
     	$user = User::create($request->all());
 
@@ -43,9 +45,12 @@ class CheckoutController extends Controller
                 'subtotal'  => $item->subtotal,
             ]);
         }
-    
-        // Send the order details to customer through email
-    	// Notify admin about the new order
+
+        $user->charge($this->cart->subtotal(), [
+            'source'    => $request->stripeToken
+        ]);
+
+        event( new UserPlacedAnOrder($user, $order) );
         
     	// View successful order page
         return redirect()->route('checkout.success');

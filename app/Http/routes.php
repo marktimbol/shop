@@ -25,3 +25,8 @@ Route::get('checkout/success', [
 
 Route::auth();
 Route::get('/home', 'HomeController@index');
+
+Route::post(
+	'stripe/webhook',
+	'\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
+);

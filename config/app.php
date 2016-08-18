@@ -154,7 +154,8 @@ return [
          * Package Service Providers...
          */
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-
+        Laravel\Cashier\CashierServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

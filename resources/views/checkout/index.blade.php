@@ -6,7 +6,7 @@
 			<div class="col-md-12">
 				<h2>Checkout</h2>
 			</div>
-			<form method="POST" action="{{ route('checkout') }}">
+			<form method="POST" action="{{ route('checkout') }}" id="billingForm">
 				{{ csrf_field() }}
 				<div class="col-md-4">
 					<h3>1. Billing Information</h3>
@@ -106,11 +106,73 @@
 							<input type="radio" name="payment" value="card" /> Credit Card
 						</label>
 					</div>
+
+					<div class="form-group">
+						<label for="card_name">Name on Card</label>
+						<input type="text" 
+							id="card_name" 
+							size="20" 
+							value="Mark Timbol"
+							class="form-control" />
+					</div>
+
+					<div class="form-group">
+						<label for="card_number">Card Number</label>
+						<input type="text" 
+							id="card_number" 
+							size="20" 
+							data-stripe="number" 
+							value="4242424242424242"
+							class="form-control" />
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="card_expiry_month">Expiry Month</label>
+							    <input type="text" 
+							    	id="card_expiry_month"
+							    	size="2" 
+							    	data-stripe="exp_month" 
+							    	value="01"
+							    	class="form-control" />
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="card_expiry_year">Expiry Year</label>
+							    <input type="text" 
+							    	id="card_expiry_year"
+							    	size="2" 
+							    	data-stripe="exp_year" 
+							    	value="2020"
+							    	class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="card_cvc">CVC</label>
+						<input type="text" 
+							id="card_cvc"
+							size="4" 
+							data-stripe="cvc" 
+							value="123"
+							class="form-control" />
+					</div>
 				</div>
 
 				<div class="col-md-4">
 					<h3>4. Review Order</h3>
-
+					@forelse( $cart as $item )
+						<li>
+							{{ $item->name }}
+						</li>
+					@empty
+						<p>Shopping cart is empty.</p>
+					@endforelse
+					
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" name="terms" />
@@ -125,12 +187,11 @@
 			</form>
 		</div>
 	</div>
+@endsection
 
-	@forelse( $cart as $item )
-		<li>
-			{{ $item->name }}
-		</li>
-	@empty
-		<p>Shopping cart is empty.</p>
-	@endforelse
+@section('footer')
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	<script type="text/javascript">
+		Stripe.setPublishableKey('pk_test_FdWDhqgmFddybwXdk6GOL1fH');
+	</script>
 @endsection

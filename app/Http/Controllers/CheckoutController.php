@@ -50,6 +50,9 @@ class CheckoutController extends Controller
             'source'    => $request->stripeToken
         ]);
 
+        // Delete the items in the cart.
+        $this->cart->destroy();
+        
         event( new UserPlacedAnOrder($user, $order) );
         
     	// View successful order page

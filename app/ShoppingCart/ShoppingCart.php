@@ -16,6 +16,11 @@ class ShoppingCart
 		Cart::add($item->id, $item->name, 1, $item->price, ['item' => $item]);
 	}
 
+	public function destroy()
+	{
+		Cart::destroy();
+	}
+
 	public function subtotal()
 	{
 		return (double) Cart::subtotal();

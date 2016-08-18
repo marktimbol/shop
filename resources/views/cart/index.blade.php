@@ -47,6 +47,8 @@
 						</tr>
 					</tfoot>
 				</table>
+
+				<a href="/checkout" class="btn btn-default">Checkout</a>
 			</div>
 		</div>
 	</div>

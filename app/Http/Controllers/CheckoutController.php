@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\UserPlacedAnOrder;
 use App\Http\Requests;
+use App\Http\Requests\CheckoutRequest;
 use App\ShoppingCart\ShoppingCart;
 use App\User;
 use Carbon\Carbon;
@@ -25,10 +26,10 @@ class CheckoutController extends Controller
     	return view('checkout.index', compact('cart'));
     }
 
-    public function store(Request $request)
-    {                
+    public function store(CheckoutRequest $request)
+    {
     	// Register the user
-    	$user = User::create($request->all());
+    	$user = User::firstOrCreate($request->all());
 
     	// Create the order for the customer
     	$order = $user->orders()->create([
@@ -46,15 +47,18 @@ class CheckoutController extends Controller
             ]);
         }
 
-        $user->charge($this->cart->subtotal(), [
-            'source'    => $request->stripeToken
-        ]);
-
+        if( $request->payment === 'card' )
+        {        
+            $user->charge($this->cart->subtotal(), [
+                'source'    => $request->stripeToken
+            ]);
+        }
+        
         // Delete the items in the cart.
         $this->cart->destroy();
-        
+
         event( new UserPlacedAnOrder($user, $order) );
-        
+
     	// View successful order page
         return redirect()->route('checkout.success');
     }

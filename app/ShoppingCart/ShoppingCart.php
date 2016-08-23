@@ -13,7 +13,9 @@ class ShoppingCart
 
 	public function store(Item $item)
 	{
-		Cart::add($item->id, $item->name, 1, $item->price, ['item' => $item]);
+		Cart::add($item->id, $item->name, 1, $item->price, [
+			'item' => $item
+		]);
 	}
 
 	public function destroy()

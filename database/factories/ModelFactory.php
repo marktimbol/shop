@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -25,5 +27,12 @@ $factory->define(App\Item::class, function (Faker\Generator $faker) {
         'name' => $faker->sentence,
         'slug'	=> $faker->slug,
         'price'	=> $faker->randomNumber(2)
+    ];
+});
+
+$factory->define(App\Order::class, function (Faker\Generator $faker) {
+    return [
+        'paid'  => false,
+        'date'  => Carbon::now()
     ];
 });

@@ -1,13 +1,17 @@
 <?php
 
 use App\Events\UserPlacedAnOrder;
+use App\Listeners\SendOrderDetailsToAdmin;
+use App\Listeners\SendOrderDetailsToUser;
+use App\Order;
 use App\ShoppingCart\ShoppingCart;
+use App\User;
 use Carbon\Carbon;
-use MailThief\Facades\MailThief;
-use MailThief\Testing\InteractsWithMail;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use MailThief\Facades\MailThief;
+use MailThief\Testing\InteractsWithMail;
 
 class CheckoutTest extends TestCase
 {
@@ -42,15 +46,30 @@ class CheckoutTest extends TestCase
     		->see($item->name);
     }
 
+    public function test_it_displays_the_errors_if_we_did_not_fill_up_the_required_field()
+    {
+        $item = factory(App\Item::class)->create();
+        $this->cart->store($item);
+
+        $this->visit('/checkout')
+            ->press('Place order');
+
+        $this->see('The email field is required.')
+            ->see('The name field is required.')
+            ->see('The phone field is required.');
+    }
+
     public function test_it_accepts_a_cash_on_delivery()
     {
-    	$item = factory(App\Item::class)->create();
+    	$item = factory(App\Item::class)->create([
+            'price' => 99
+        ]);
     	$this->cart->store($item);
 
     	$this->visit('/checkout');
     	$this->fillupBillingForm();
-		$this->select('cash', 'payment')
-			->press('Place order');
+        $this->select('cash', 'payment');
+        $this->press('Place order');
 
 		$this->seeInDatabase('orders', [
 			'id'	=> 1,
@@ -63,20 +82,34 @@ class CheckoutTest extends TestCase
 			'order_id'	=> 1,
 			'item_id'	=> $item->id,
 			'quantity'	=> 1,
-			'subtotal'	=> $this->cart->subtotal(),
+			'subtotal'	=> 99
 		]);
     }
 
-    public function test_it_accepts_credit_card_payment()
+    public function test_it_sends_an_email_to_user_with_his_or_her_order_details()
     {
-    	$item = factory(App\Item::class)->create();
-    	$this->cart->store($item);
+        MailThief::hijack();
 
-    	$this->visit('/checkout');
-    	$this->fillupBillingForm();
-    	$this->select('card', 'payment');
-    	$this->fillUpCreditCardForm();
- 		$this->press('Place order');
+        $event = $this->userPlacedAnOrder();
+        $sendToUser = new SendOrderDetailsToUser();        
+        $sendToUser->handle($event);
+
+        $this->seeMessageFor('mark.timbol@hotmail.com');
+        $this->seeMessageWithSubject('Your order details');
+        $this->assertTrue(MailThief::lastMessage()->contains('Total: AED 99.0'));
+    }
+
+    public function test_it_sends_an_email_to_admin_with_the_new_order_details()
+    {
+        MailThief::hijack();
+
+        $event = $this->userPlacedAnOrder();
+        $sendToAdmin = new SendOrderDetailsToAdmin();        
+        $sendToAdmin->handle($event);
+
+        $this->seeMessageFor('admin@marktimbol.com');
+        $this->seeMessageWithSubject('New Order');
+        $this->assertTrue(MailThief::lastMessage()->contains('Total: AED 99.0'));
     }
 
     protected function fillupBillingForm()
@@ -93,28 +126,46 @@ class CheckoutTest extends TestCase
 			->check('terms');
     }
 
-    protected function fillUpCreditCardForm()
+    protected function submitBillingForm()
     {
-    	$this->type('Mark Jayson Timbol', 'card_name')
-    		->type('4242424242424242', 'card_number')
-    		->type('01', 'card_expiry_month')
-    		->type('2020', 'card_expiry_year')
-    		->type('123', 'card_cvc');
+        $this->post('/checkout', [
+            'email' => 'mark.timbol@hotmail.com',
+            'name'  => 'Mark Timbol',
+            'phone' => '0097144519562',
+            'address'   => 'Dubai',
+            'city'  => 'Dubai',
+            'state' => 'Dubai',
+            'country'   => 'UAE',
+            'password'  => 'password123',
+            'password_confirmation' => 'password123',
+            'payment'   => 'cash',
+            'terms' => 1,
+        ]);
     }
 
-    // TODO
-    public function a_test_it_sends_an_email_to_user_once_the_order_has_been_placed()
+    protected function userPlacedAnOrder()
     {
-    	$this->expectsEvents(UserPlacedAnOrder::class);
+        $user = factory(App\User::class)->create([
+            'email' => 'mark.timbol@hotmail.com'
+        ]);
 
-    	$item = factory(App\Item::class)->create();
-    	$this->cart->store($item);
+        $order = factory(App\Order::class)->create([
+            'user_id'   => $user->id,
+            'date'  => Carbon::now(),
+            'paid'  => false,
+        ]);
 
-    	$this->fillupBillingForm();
+        $item = factory(App\Item::class)->create([
+            'price' => 99
+        ]);
 
-		$this->seeMessageFor('mark.timbol@hotmail.com');
-		$this->seeMessageWithSubject('Your order details');
-		$this->assertTrue(MailThief::lastMessage()->contains('Your order details.'));
+        $order->details()->create([
+            'item_id'   => $item->id,
+            'quantity'  => 1,
+            'subtotal'  => 99
+        ]);
+
+        return new UserPlacedAnOrder($user, $order);
     }
 
 }

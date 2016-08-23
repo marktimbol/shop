@@ -10,6 +10,6 @@ class CheckoutSuccessController extends Controller
 {
     public function index()
     {
-    	return view('checkout.success');
+    	return view('pages.checkout.success');
     }
 }

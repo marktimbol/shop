@@ -24,9 +24,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Item::class, function (Faker\Generator $faker) {
     return [
+        'brand_id'  => factory(App\Brand::class)->create()->id,
         'name' => $faker->sentence,
         'slug'	=> $faker->slug,
         'price'	=> $faker->randomNumber(2)
+    ];
+});
+
+$factory->define(App\Brand::class, function (Faker\Generator $faker) {
+    return [
+        'name'  => $faker->word,
+        'slug'  => $faker->slug,
     ];
 });
 

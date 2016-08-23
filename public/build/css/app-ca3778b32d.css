@@ -6758,7 +6758,8 @@ button.close {
 
 body {
   font-family: 'Lato';
-  font-size: 14px; }
+  font-size: 14px;
+  background-color: white; }
 
 h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase; }
@@ -6862,6 +6863,10 @@ ul {
     .Cart__item a:hover {
       color: #999;
       text-decoration: none; }
+
+.Payment__errors {
+  display: none;
+  padding: 7px 10px; }
 
 /*# sourceMappingURL=app.css.map */
 

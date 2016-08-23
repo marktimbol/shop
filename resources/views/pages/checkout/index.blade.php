@@ -103,21 +103,27 @@
 
 				<div class="col-md-4">
 					<h3>2. Payment Method</h3>
-					<div class="{{ $errors->has('terms') ? 'has-error' : '' }}">
-						<div class="radio">
-							<label>
-								<input type="radio" name="payment" value="cash" /> Cash on delivery
-							</label>
-						</div>
+					<div class="radio">
+						<label>
+							<input type="radio" 
+								name="payment" 
+								value="cash" 
+								checked /> 
+								Cash on delivery
+						</label>
 					</div>
 
-					<div class="{{ $errors->has('terms') ? 'has-error' : '' }}">
-						<div class="radio">
-							<label>
-								<input type="radio" name="payment" value="card" /> Credit Card
-							</label>
-						</div>
+					<div class="radio">
+						<label>
+							<input type="radio" 
+								name="payment" 
+								value="card" 
+								{{ old('payment') === 'card' ? 'checked' : '' }} /> 
+								Credit Card
+						</label>
 					</div>
+
+					<div class="alert alert-danger Payment__errors"></div>
 
 					<div class="form-group">
 						<label class="control-label" for="card_number">Name on Card</label>
@@ -139,39 +145,55 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label" for="card_expiry_month">Expiry Month</label>
-							    <input type="text" 
-							    	id="card_expiry_month"
-							    	size="2" 
-							    	data-stripe="exp_month" 
-							    	value="01"
-							    	class="form-control" />
+						<div class="col-md-7">
+							<div class="row">
+								<div class="col-md-12">
+									<label class="control-label" for="card_expiry_month">Expiry (MM/YYYY)</label>
+									<div class="form-group form-inline">
+										<select data-stripe="exp-month" class="form-control">
+											<option value=""></option>
+											@foreach( range(1, 12) as $month )
+												<option value="{{ $month }}" 
+													{{ $month === 1 ? 'selected' : '' }}
+												>
+													{{ date('m', strtotime(sprintf('%s-%s', date('Y'), $month))) }} - 
+													{{ date('F', strtotime(sprintf('%s-%s', date('Y'), $month))) }}
+												</option>
+											@endforeach
+										</select>
+
+										<select data-stripe="exp-year" class="form-control">
+											<option value=""></option>
+											@foreach( range(2016, date('Y') + 10) as $year )
+												<option value="{{ $year }}" 
+													{{ $year == date('Y') + 1 ? 'selected' : '' }}
+												>
+													{{ $year }}
+												</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-5">
 							<div class="form-group">
-								<label class="control-label" for="card_expiry_year">Expiry Year</label>
-							    <input type="text" 
-							    	id="card_expiry_year"
-							    	size="2" 
-							    	data-stripe="exp_year" 
-							    	value="2020"
-							    	class="form-control" />
+								<label class="control-label" for="card_cvc">CVC</label>
+								<input type="text" 
+									id="card_cvc"
+									size="4" 
+									data-stripe="cvc" 
+									value="123"
+									class="form-control" />
 							</div>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label" for="card_cvc">CVC</label>
-						<input type="text" 
-							id="card_cvc"
-							size="4" 
-							data-stripe="cvc" 
-							value="123"
-							class="form-control" />
+					<h3>Have coupon?</h3>
+					<div class="form-group form-inline">
+						<input type="text" name="coupon" class="form-control" value="{{ old('coupon') }}" />
+						<button class="btn btn-primary">Apply coupon</button>
 					</div>
 				</div>
 
@@ -194,7 +216,7 @@
 						</div>
 					</div>
 
-					<button type="submit" class="btn btn-primary btn-lg">
+					<button type="submit" class="btn btn-success btn-lg place-order">
 						Place order
 					</button>
 				</div>

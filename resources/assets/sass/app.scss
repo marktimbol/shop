@@ -1,6 +1,7 @@
 body {
 	font-family: 'Lato';
 	font-size: 14px;
+	background-color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -119,4 +120,9 @@ ul {
 			text-decoration: none;
 		}
 	}
+}
+
+.Payment__errors {
+	display: none;
+    padding: 7px 10px;
 }

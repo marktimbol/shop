@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'PagesController@home');
+
+Route::get('shop', ['as' => 'shop', 'uses' => 'ItemsController@index']);
 Route::get('items/{items}', ['as' => 'items.show', 'uses' => 'ItemsController@show']);
 
 Route::get('cart', ['as' => 'cart.index', 'uses' => 'CartController@index']);

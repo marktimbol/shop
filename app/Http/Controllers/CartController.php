@@ -21,7 +21,7 @@ class CartController extends Controller
 	{
 		$cart = $this->cart->all();
 		$subtotal = $this->cart->subtotal();
-		return view('cart.index', compact('cart', 'subtotal'));
+		return view('pages.cart.index', compact('cart', 'subtotal'));
 	}
 
     public function store(Request $request)

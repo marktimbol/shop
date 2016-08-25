@@ -1,0 +1,37 @@
+.Cart {
+	.table {
+		th { 
+			text-transform: uppercase; 
+		}
+		td {
+			padding: 20px;
+		}
+	}
+}
+
+.Cart--isEmpty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.Cart__item {
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 22px;
+	text-transform: capitalize;
+	a {
+		color: black;
+		text-decoration: none;
+		&:hover {
+			color: #999;
+			text-decoration: none;
+		}
+	}
+}
+
+.Payment__errors {
+	display: none;
+    padding: 7px 10px;
+}

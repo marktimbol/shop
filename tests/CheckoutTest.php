@@ -59,7 +59,14 @@ class CheckoutTest extends TestCase
             ->see('The phone field is required.');
     }
 
-    public function test_it_accepts_a_cash_on_delivery()
+    public function test_redirect_the_user_on_the_cart_page_when_they_are_trying_to_access_the_checkout_page()
+    {
+        $this->visit('/checkout');
+        $this->seePageIs('/cart')
+            ->see('Shopping cart is empty');
+    }
+
+    public function test_unauthenticated_users_are_required_to_fillup_the_checkout_form_when_placing_an_order()
     {
     	$item = factory(App\Item::class)->create([
             'price' => 99
@@ -84,6 +91,26 @@ class CheckoutTest extends TestCase
 			'quantity'	=> 1,
 			'subtotal'	=> 99
 		]);
+    }
+
+    public function test_an_authenticated_user_does_not_need_to_fillup_the_checkout_form_to_place_an_order()
+    {
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
+
+        $this->visit('/checkout')
+            ->see($user->name)
+            ->see($user->phone)
+            ->see($user->address)
+            ->see($user->city)
+            ->see($user->state)
+            ->see($user->country)
+            ->dontSee('Email address')
+            ->dontSee('Create your account')
+
+            ->select('cash', 'payment')
+            ->check('terms')
+            ->press('Place order');
     }
 
     public function test_it_sends_an_email_to_user_with_his_or_her_order_details()

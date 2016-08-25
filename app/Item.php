@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
 	protected $fillable = ['brand_id', 'name', 'slug', 'price'];
-	
-	public function getRouteKeyName()
-	{
-		return 'slug';
-	}
+	protected $with = ['brand'];
 
-	public function scopeByBrand($query, $brand = [])
+	public function getRouteKeyName() { return 'slug'; }
+
+	public function brand()
 	{
-		return $query;
+		return $this->belongsTo(Brand::class);
 	}
 }

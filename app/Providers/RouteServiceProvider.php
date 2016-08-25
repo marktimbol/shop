@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Item;
+use App\Order;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
@@ -26,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $router->model('items', Item::class);
+        $router->model('orders', Order::class);
 
         parent::boot($router);
     }

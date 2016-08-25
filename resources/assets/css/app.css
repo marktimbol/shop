@@ -3,33 +3,34 @@ body {
   font-size: 14px;
   background-color: white; }
 
-h1, h2, h3, h4, h5, h6 {
-  text-transform: uppercase; }
-
 ul {
   list-style: none; }
 
-.Item {
+.Page__title {
+  font-size: 18px;
+  margin-top: 0; }
+
+.Card {
   position: relative; }
 
-.Item__info {
+.Card__info {
   position: absolute;
   top: 15px;
   background: white;
   padding: 5px 10px; }
 
-.Item--new {
+.Item--is-new {
   left: 30px; }
-  .Item--new span {
+  .Item--is-new span {
     font-weight: bold;
     text-transform: uppercase; }
 
-.Item--onsale {
+.Item--is-onsale {
   right: 30px; }
-  .Item--onsale span {
+  .Item--is-onsale span {
     color: red; }
 
-.Item__content {
+.Card__content {
   padding: 10px;
   display: -ms-flexbox;
   display: flex;
@@ -40,7 +41,7 @@ ul {
   -ms-flex-pack: center;
   justify-content: center; }
 
-.Item__name {
+.Card__title {
   color: #000;
   font-size: 14px;
   line-height: 20px;
@@ -53,7 +54,7 @@ ul {
   white-space: nowrap;
   text-overflow: ellipsis; }
 
-.Item__price {
+.Card__price {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -62,37 +63,56 @@ ul {
   justify-content: center;
   -ms-flex-direction: row;
   flex-direction: row; }
-  .Item__price > * {
+  .Card__price > * {
     margin: 0px 8px; }
 
-.Item__price--new {
+.Card__price--new {
   color: #cc0000;
   font-size: 18px;
   font-weight: bold; }
 
-.Item__price--old {
+.Card__price--old {
   color: #999;
   text-decoration: line-through; }
 
-.Item__action {
+.Card__action {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center; }
-  .Item__action button {
+  .Card__action button {
     text-transform: uppercase; }
 
 .price {
   color: #cc0000;
   font-weight: bold; }
 
+.Item__name {
+  font-size: 18px;
+  margin-top: 0; }
+
+.Item__price {
+  color: #cc0000;
+  font-weight: bold;
+  font-size: 24px; }
+
 .Cart .table th {
   text-transform: uppercase; }
 
 .Cart .table td {
   padding: 20px; }
+
+.Cart--isEmpty {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-direction: column;
+  flex-direction: column; }
 
 .Cart__item {
   font-size: 16px;

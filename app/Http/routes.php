@@ -28,6 +28,20 @@ Route::get('checkout/success', [
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
+Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
+	Route::get('/', 'DashboardController@index');
+	Route::get('address/edit', [
+		'as' => 'dashboard.address.edit', 
+		'uses' => 'UserAddressController@edit'
+	]);
+	Route::put('address/edit', [
+		'as' => 'dashboard.address.update', 
+		'uses' => 'UserAddressController@update'
+	]);
+	Route::get('orders', 'OrdersController@index');
+	Route::get('orders/{orders}', 'OrdersController@show');
+});
+
 Route::post(
 	'stripe/webhook',
 	'\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'

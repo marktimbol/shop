@@ -23,7 +23,11 @@ class CheckoutController extends Controller
     public function index()
     {
     	$cart = $this->cart->all();
-    	return view('pages.checkout.index', compact('cart'));
+        if( $cart->count() > 0 ) {
+    	   return view('pages.checkout.index', compact('cart')); 
+        }
+
+        return redirect()->route('cart.index');
     }
 
     public function store(CheckoutRequest $request)

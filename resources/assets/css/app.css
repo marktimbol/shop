@@ -8,7 +8,11 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase; }
 
 ul {
-  list-style: none; }
+  list-style: none;
+  padding-left: 0; }
+
+blockquote {
+  border-left: 0; }
 
 .Page__title {
   font-size: 18px;
@@ -16,6 +20,35 @@ ul {
 
 .navbar {
   margin-bottom: 0; }
+
+footer {
+  padding: 70px 0px;
+  background: url("/images/footer-bg.jpg") no-repeat;
+  background-size: cover; }
+  footer h4, footer p {
+    color: white; }
+  footer p {
+    font-size: 13px;
+    line-height: 24px; }
+  footer h6 {
+    color: white;
+    font-size: 13px;
+    text-align: center; }
+  footer .footer-logo {
+    margin-bottom: 120px; }
+    footer .footer-logo img {
+      margin: 0 auto; }
+  footer h4 {
+    margin: 40px 0px; }
+  footer ul {
+    text-align: right; }
+    footer ul li {
+      line-height: 24px; }
+      footer ul li a {
+        color: white; }
+        footer ul li a:hover {
+          color: white;
+          text-decoration: underline; }
 
 .Home__bg {
   background: url("/images/top-bg.jpg") no-repeat center center;
@@ -49,6 +82,42 @@ ul {
     justify-content: center;
     -ms-flex-direction: column;
     flex-direction: column; }
+    .Home figure figcaption blockquote {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-align: center;
+      align-items: center;
+      -ms-flex-pack: center;
+      justify-content: center; }
+      .Home figure figcaption blockquote .quote {
+        color: #ccc;
+        font-size: 18px;
+        font-style: italic;
+        text-align: center;
+        line-height: 24px;
+        margin-bottom: 50px; }
+      .Home figure figcaption blockquote .author {
+        margin: 0;
+        color: #ccc;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.25em;
+        text-transform: uppercase; }
+      .Home figure figcaption blockquote .designation {
+        margin: 0;
+        color: #666;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 18px; }
+      .Home figure figcaption blockquote::before {
+        content: "\f10d";
+        font-family: FontAwesome;
+        font-size: 36px;
+        color: #cc9966;
+        margin-bottom: 60px;
+        display: inline-block; }
 
 .Home .Figure--with-padding {
   padding: 40px 0px; }
@@ -71,6 +140,16 @@ ul {
 .Home .Figure__content {
   width: 75%;
   margin: 0 auto; }
+
+.Home__title--container {
+  padding: 40px 0px; }
+
+.Home__title {
+  text-align: center; }
+
+.Home__subtitle {
+  color: #555;
+  text-align: center; }
 
 .Card {
   position: relative; }

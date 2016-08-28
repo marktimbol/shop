@@ -16,11 +16,10 @@
 
 </head>
 <body id="app-layout">
-    @include('layouts._nav')
+    @include('layouts._header')
 
     @yield('content')
 
-    @yield('footer')
-    <script src="{{ elixir('js/app.js') }}"></script>
+    @include('layouts._footer')
 </body>
 </html>

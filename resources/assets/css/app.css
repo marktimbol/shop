@@ -1,7 +1,11 @@
 body {
-  font-family: 'Lato';
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   background-color: white; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  text-transform: uppercase; }
 
 ul {
   list-style: none; }
@@ -9,6 +13,64 @@ ul {
 .Page__title {
   font-size: 18px;
   margin-top: 0; }
+
+.navbar {
+  margin-bottom: 0; }
+
+.Home__bg {
+  background: url("/images/top-bg.jpg") no-repeat center center;
+  background-size: cover; }
+
+.Home .action-button {
+  width: 150px; }
+
+.Home figure {
+  display: -ms-flexbox;
+  display: flex; }
+  .Home figure h3 {
+    color: #cc9966;
+    font-size: 16px;
+    margin-bottom: 30px; }
+  .Home figure h2 {
+    color: white;
+    font-size: 48px;
+    margin-bottom: 40px; }
+  .Home figure p {
+    color: #ccc;
+    margin-bottom: 15px; }
+  .Home figure .action-button {
+    margin-top: 20px; }
+  .Home figure .signature {
+    margin-top: 50px; }
+  .Home figure figcaption {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+
+.Home .Figure--with-padding {
+  padding: 40px 0px; }
+
+.Home .Figure__left {
+  -ms-flex: 1;
+  flex: 1; }
+
+.Home .Figure__right {
+  -ms-flex: 1;
+  flex: 1; }
+
+.Home .Figure__reverse {
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse; }
+
+.Home .Figure--with-dark-bg {
+  background-color: #161616; }
+
+.Home .Figure__content {
+  width: 75%;
+  margin: 0 auto; }
 
 .Card {
   position: relative; }
@@ -129,5 +191,21 @@ ul {
 .Payment__errors {
   display: none;
   padding: 7px 10px; }
+
+@media screen and (max-width: 320px) {
+  .Home figure {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 20px; }
+    .Home figure h2 {
+      font-size: 28px;
+      margin-bottom: 20px; }
+    .Home figure h3 {
+      margin-bottom: 20px; }
+  .Home .Figure__content {
+    width: 90%; }
+  .Home .Figure__reverse {
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse; } }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,0 +1,71 @@
+.Home__bg {
+	background: url('/images/top-bg.jpg') no-repeat center center;
+	background-size: cover;
+}
+
+.Home {
+	.action-button {
+		width: 150px;
+	}
+
+	figure {
+		display: flex;
+
+		h3 {
+			color: #cc9966;
+			font-size: 16px;
+			margin-bottom: 30px;
+		}
+
+		h2 {
+			color: white;
+			font-size: 48px;
+			margin-bottom: 40px;
+		}
+
+		p {
+			color: #ccc;
+			margin-bottom: 15px;
+		}
+
+		.action-button {
+			margin-top: 20px;
+		}
+
+		.signature {
+			margin-top: 50px;
+		}
+
+		figcaption {
+			// padding: 20px;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+	}
+
+	.Figure--with-padding {
+		padding: 40px 0px;
+	}
+
+	.Figure__left {
+		flex: 1;
+	}
+
+	.Figure__right {
+		flex: 1;
+	}
+
+	.Figure__reverse {
+		flex-direction: row-reverse;
+	}
+
+	.Figure--with-dark-bg {
+		background-color: #161616;
+	}
+
+	.Figure__content {
+	    width: 75%;
+	    margin: 0 auto;
+	}
+}

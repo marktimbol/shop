@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
-				<h2>My Account</h2>
+				@include('dashboard._sidebar')
 			</div>
 			<div class="col-md-9">
 				<h2>Update address</h2>

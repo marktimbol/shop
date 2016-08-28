@@ -29,7 +29,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
-	Route::get('/', 'DashboardController@index');
+	Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 	Route::get('address/edit', [
 		'as' => 'dashboard.address.edit', 
 		'uses' => 'UserAddressController@edit'
@@ -38,8 +38,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
 		'as' => 'dashboard.address.update', 
 		'uses' => 'UserAddressController@update'
 	]);
-	Route::get('orders', 'OrdersController@index');
-	Route::get('orders/{orders}', 'OrdersController@show');
+	Route::get('account/edit', [
+		'as' => 'dashboard.account.edit', 
+		'uses' => 'UserAccountController@edit'
+	]);
+	Route::put('account/edit', [
+		'as' => 'dashboard.account.update', 
+		'uses' => 'UserAccountController@update'
+	]);
+	Route::get('orders', ['as' => 'dashboard.orders.index', 'uses' => 'OrdersController@index']);
+	Route::get('orders/{orders}', ['as' => 'dashboard.orders.show', 'uses' => 'OrdersController@show']);
 });
 
 Route::post(

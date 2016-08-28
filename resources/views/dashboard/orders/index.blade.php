@@ -4,16 +4,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
-				<h2>Sidebar</h2>
+				@include('dashboard._sidebar')
 			</div>
 
 			<div class="col-md-9">
-				<h2>Your Orders</h2>
+				<h2>My Orders</h2>
 
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>Order ID</th>
+							<th>Name</th>
 							<th>Date Ordered</th>
 							<th>Paid</th>
 							<th>&nbsp;</th>
@@ -22,7 +23,8 @@
 					<tbody>
 						@foreach( $orders as $order )
 							<tr>
-								<td>{{ $order->id }}</td>
+								<td><a href="{{ route('dashboard.orders.show', $order->id) }}">{{ $order->id }}</a></td>
+								<td>{{ $order->user->name }}</td>
 								<td>{{ $order->date }}</td>
 								<td>{{ $order->paid ? 'Paid' : 'Not paid' }}</td>
 								<td>&nbsp;</td>

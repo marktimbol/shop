@@ -17,5 +17,9 @@ class UserAddressController extends Controller
     public function update(UpdateAddressRequest $request)
     {
     	auth()->user()->update($request->all());
+
+    	// Flash message
+
+    	return redirect()->back();
     }
 }

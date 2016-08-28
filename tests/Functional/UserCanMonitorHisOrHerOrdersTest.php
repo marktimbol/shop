@@ -21,7 +21,7 @@ class UserCanMonitorHisOrHerOrdersTest extends TestCase
         $this->userOrdersThis($item);
 
         $this->visit('/dashboard/orders')
-        	->see('Your orders')
+        	->see('My orders')
         	->see('Not paid');
     }
 

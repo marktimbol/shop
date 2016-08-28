@@ -25,16 +25,20 @@ class CheckoutTest extends TestCase
 		parent::setUp();
 	}
 
-    public function test_it_displays_the_checkout_page()
+    public function test_it_redirects_to_cart_page_if_the_cart_it_empty_when_visiting_the_checkout_page()
     {
-    	$this->visit('/checkout')
-    		->see('Checkout');
+        $this->visit('/checkout');
+        $this->seePageIs('/cart')
+            ->see('Shopping cart is empty');
     }
 
-    public function test_it_shows_empty_cart_when_visiting_checkout_without_items_on_the_cart()
+    public function test_it_displays_the_checkout_page()
     {
+        $item = factory(App\Item::class)->create();
+        $this->cart->store($item);
+
     	$this->visit('/checkout')
-    		->see('Shopping cart is empty.');
+    		->see('Checkout');
     }
 
     public function test_it_shows_all_the_items_in_the_cart_during_checkout()
@@ -59,19 +63,10 @@ class CheckoutTest extends TestCase
             ->see('The phone field is required.');
     }
 
-    public function test_redirect_the_user_on_the_cart_page_when_they_are_trying_to_access_the_checkout_page()
-    {
-        $this->visit('/checkout');
-        $this->seePageIs('/cart')
-            ->see('Shopping cart is empty');
-    }
-
     public function test_unauthenticated_users_are_required_to_fillup_the_checkout_form_when_placing_an_order()
     {
-    	$item = factory(App\Item::class)->create([
-            'price' => 99
-        ]);
-    	$this->cart->store($item);
+        $item = factory(App\Item::class)->create();
+        $this->cart->store($item);
 
     	$this->visit('/checkout');
     	$this->fillupBillingForm();
@@ -83,20 +78,31 @@ class CheckoutTest extends TestCase
 			'user_id'	=> 1,
 			'date'	=> Carbon::now(),
 			'paid'	=> false
-		])
-
-		->seeInDatabase('order_details', [
-			'order_id'	=> 1,
-			'item_id'	=> $item->id,
-			'quantity'	=> 1,
-			'subtotal'	=> 99
 		]);
+
+        foreach( $this->cart->all() as $item )
+        {
+    		$this->seeInDatabase('order_details', [
+    			'order_id'	=> 1,
+    			'item_id'	=> $item->id,
+    			'quantity'	=> $item->qty,
+    			'subtotal'	=> $item->subtotal
+    		]);
+        }
+
+        // Flash message
+
+        return redirect('/');
+
     }
 
     public function test_an_authenticated_user_does_not_need_to_fillup_the_checkout_form_to_place_an_order()
     {
         $user = factory(App\User::class)->create();
         $this->actingAs($user);
+
+        $item = factory(App\Item::class)->create();
+        $this->cart->store($item);
 
         $this->visit('/checkout')
             ->see($user->name)

@@ -24,15 +24,15 @@ class CheckoutRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required',
+            'email' => 'sometimes|required|email',
             'name'  => 'required',
             'phone' => 'required',
             'address'   => 'required',
             'city'  => 'required',
             'state' => 'required',
             'country'   => 'required',
-            'password'  => 'required|min:6|confirmed',
-            'password_confirmation' => 'required',
+            'password'  => 'sometimes|required|min:6|confirmed',
+            'password_confirmation' => 'sometimes|required',
             'terms' => 'accepted',
         ];
     }

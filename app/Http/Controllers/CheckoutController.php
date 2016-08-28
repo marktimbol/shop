@@ -13,7 +13,7 @@ use Mail;
 
 class CheckoutController extends Controller
 {
-	protected $cart;
+    protected $cart;
 
 	public function __construct(ShoppingCart $cart)
 	{
@@ -23,6 +23,7 @@ class CheckoutController extends Controller
     public function index()
     {
     	$cart = $this->cart->all();
+        
         if( $cart->count() > 0 ) {
     	   return view('pages.checkout.index', compact('cart')); 
         }
@@ -32,13 +33,27 @@ class CheckoutController extends Controller
 
     public function store(CheckoutRequest $request)
     {
-    	// Register the user
-    	$user = User::firstOrCreate($request->all());
+        if( auth()->check() ) {
+            $user = auth()->user();
+        } else {
+            $user = User::create($request->all());
+        }
+
+        if( $request->payment === 'card' )
+        {        
+            try {
+                $user->charge($this->cart->subtotal(), [
+                    'source' => $request->stripeToken
+                ]);
+            } catch (Exception $e) {
+                
+            }
+        }
 
     	// Create the order for the customer
     	$order = $user->orders()->create([
     		'date'	=> Carbon::now(),
-    		'paid'	=> false
+    		'paid'	=> $request->payment === 'card' ? 1 : 0,
     	]);
 
     	// Store the detailed order on the order details table
@@ -48,13 +63,6 @@ class CheckoutController extends Controller
                 'item_id'   => $item->options->item->id,
                 'quantity'  => $item->qty,
                 'subtotal'  => $item->subtotal,
-            ]);
-        }
-
-        if( $request->payment === 'card' )
-        {        
-            $user->charge($this->cart->subtotal(), [
-                'source'    => $request->stripeToken
             ]);
         }
         

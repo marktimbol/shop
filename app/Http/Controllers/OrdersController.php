@@ -10,7 +10,7 @@ class OrdersController extends Controller
 {
     public function index()
     {
-    	$orders = auth()->user()->orders;
+    	$orders = auth()->user()->latestOrders();
     	return view('dashboard.orders.index', compact('orders'));
     }
 

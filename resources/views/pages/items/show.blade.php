@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('header_styles')
+    <link rel="stylesheet" href="{{ elixir('css/home.css') }}" />
+@endsection
+
 @section('subheader')
 	<div class="Subheader Subheader--item">
 		<h2>{{ $item->name }}</h2>
@@ -79,10 +83,10 @@
 					<h3 class="Subpage__subtitle">You might also be interested in</h3>
 				</div>
 				<div class="row">
-					<ul class="RelatedItems Cards">
+					<ul id="FeaturedItems" class="RelatedItems Cards">
 						@foreach($relatedItems as $item)
 							<li>
-								<div class="Card col-md-3 col-xs-6">
+								<div class="Card">
 									<div class="Card__info Item--is-new">
 										<span>New</span>
 									</div>
@@ -123,4 +127,8 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('footer_scripts')
+    <script src="{{ elixir('js/home.js') }}"></script>
 @endsection

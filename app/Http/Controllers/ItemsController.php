@@ -19,7 +19,7 @@ class ItemsController extends Controller
 
     public function show($item)
     {
-    	$relatedItems = Item::latest()->take(4)->get();
+    	$relatedItems = Item::latest()->take(10)->get();
     	return view('pages.items.show', compact('item', 'relatedItems'));
     }
 }

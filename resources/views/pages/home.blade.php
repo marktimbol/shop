@@ -124,12 +124,16 @@
         	@foreach($items as $item)
         		<li>
         			<div class="Card">
-        				<div class="Card__info Item--is-new">
-        					<span>New</span>
-        				</div>
-        				<div class="Card__info Item--is-onsale">
-        					<span>-17%</span>
-        				</div>
+                        @if( $item->isNew())
+            				<div class="Card__info Item--is-new">
+            					<span>New</span>
+            				</div>
+                        @endif
+                        @if( $item->isOnSale() )
+            				<div class="Card__info Item--is-onsale">
+            					<span>{{ $item->getDiscountPercentage() }}%</span>
+            				</div>
+                        @endif
         				<div class="Card_image">
         					<a href="{{ route('items.show', $item->slug) }}">
         						<img src="/images/watch.jpg" 
@@ -143,7 +147,9 @@
         					<h3 class="Card__title">{{ $item->name }}</h3>
         					<div class="Card__price">
         						<h4 class="Card__price--new">AED {{ $item->price }}</h4>
-        						<h5 class="Card__price--old">AED {{ $item->old_price }}</h5>
+                                @if( $item->price < $item->old_price )
+        						  <h5 class="Card__price--old">AED {{ $item->old_price }}</h5>
+                                @endif
         					</div>
         				</div>
 

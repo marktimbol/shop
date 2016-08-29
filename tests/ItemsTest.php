@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -24,28 +25,57 @@ class ItemsTest extends TestCase
     		->see($item->name);
     }
 
-    public function TODO_test_it_filters_the_items_per_brand()
+    public function test_check_whether_the_item_is_on_sale_or_no()
     {
-        $brand = factory(App\Brand::class)->create([
-            'name'  => 'Apple'
-        ]);
+        // On Sale
         $item = factory(App\Item::class)->create([
-            'brand_id'  => $brand->id
+            'price' => 90,
+            'old_price' => 100
         ]);
 
-        $brand->items()->save($item);
+        $result = $item->isOnSale();
 
-        // $samsungItem = factory(App\Item::class)->create();
-        // $samsung = factory(App\Brand::class)->create([
-        //     'name'  => 'Samsung'
-        // ]);
-        // $samsung->items()->save($samsungItem);
+        $this->assertTrue($result);
 
-        $this->visit('/shop')
-            ->check('brand')
-            ->press('Filter')
+        // Not on-sale
+        $item = factory(App\Item::class)->create([
+            'price' => 120,
+            'old_price' => 100
+        ]);
 
-            ->see($item->name);
-            // ->dontSee($samsungItem->name);
+        $result = $item->isOnSale();
+
+        $this->assertFalse($result);
+    }
+
+    public function test_check_whether_the_item_is_new_or_no()
+    {
+        // Item is new
+        $item = factory(App\Item::class)->create();
+        $result = $item->isNew();
+
+        $this->assertTrue($result);
+
+        // Item is old
+        $item = factory(App\Item::class)->create([
+            'updated_at'    => Carbon::now()->subDays(10)
+        ]);
+        $result = $item->isNew();
+
+        $this->assertFalse($result);
+    }
+
+    public function test_it_calculates_and_displays_the_discount_percentage_of_the_given_item()
+    {
+        $item = factory(App\Item::class)->create([
+            'price' => 90,
+            'old_price' => 100
+        ]);
+
+        $discountPercentage = $item->getDiscountPercentage();
+
+        $this->assertEquals('-10', $discountPercentage);
+        $this->visit('/')
+            ->see('-10%');
     }
 }

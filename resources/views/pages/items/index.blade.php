@@ -35,7 +35,7 @@
 									<span>New</span>
 								</div>
 								<div class="Card__info Item--is-onsale">
-									<span>-17%</span>
+									<span>{{ $item->getDiscountPercentage() }}%</span>
 								</div>
 								<div class="Card_image">
 									<a href="{{ route('items.show', $item->slug) }}">

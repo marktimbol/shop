@@ -7,9 +7,9 @@
 @endsection
 
 @section('content')
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<h3>Filter</h3>
 				<form method="GET" action="{{ route('shop') }}">
 					<h4>Price</h4>
@@ -26,9 +26,9 @@
 					<button class="btn btn-default">Filter</button>
 				</form>
 			</div>
-			<div class="col-md-10">
+			<div class="col-md-9">
 				<ul>
-					@foreach($items as $item)
+					@forelse($items as $item)
 						<li>
 							<div class="Card col-md-4">
 								<div class="Card__info Item--is-new">
@@ -65,7 +65,9 @@
 								</div>
 							</div>
 						</li>
-					@endforeach
+					@empty
+						<h5>You don't have any items available</h5>
+					@endforelse
 				</ul>
 			</div>
 		</div>

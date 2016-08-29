@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('subheader')
+	<div class="Subheader">
+		<h2>Account Information</h2>
+	</div>
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">

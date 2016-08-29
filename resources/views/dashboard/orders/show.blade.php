@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('subheader')
+	<div class="Subheader">
+		<h2>Order details</h2>
+	</div>
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">
@@ -8,8 +14,7 @@
 			</div>
 
 			<div class="col-md-9">
-				<h2>Order details</h2>
-				<p class="lead">Order ID: {{ $order->id }}</p>
+				<h2>Order ID: {{ $order->id }}</h2>
 
 				<table class="table table-bordered">
 					<thead>

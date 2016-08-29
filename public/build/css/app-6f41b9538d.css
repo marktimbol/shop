@@ -7060,6 +7060,24 @@ footer {
       color: #999;
       text-decoration: none; }
 
+.ReviewCart th {
+  font-weight: normal; }
+
+.ReviewCart__item-with-image {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  .ReviewCart__item-with-image p {
+    font-size: 12px;
+    text-align: center; }
+  .ReviewCart__item-with-image img {
+    margin-bottom: 5px; }
+
 .Payment__errors {
   display: none;
   padding: 7px 10px; }

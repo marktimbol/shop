@@ -25,7 +25,8 @@ class CheckoutController extends Controller
     	$cart = $this->cart->all();
         
         if( $cart->count() > 0 ) {
-    	   return view('pages.checkout.index', compact('cart')); 
+            $subtotal = $this->cart->subtotal();
+    	   return view('pages.checkout.index', compact('cart', 'subtotal')); 
         }
 
         return redirect()->route('cart.index');

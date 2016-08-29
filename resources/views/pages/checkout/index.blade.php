@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
+@section('subheader')
+	<div class="Subheader">
+		<h2>Checkout</h2>
+	</div>
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<h2>Checkout</h2>
-			</div>
 			<form method="POST" action="{{ route('checkout') }}" id="billingForm">
 				{{ csrf_field() }}
 				<input type="hidden" name="stripeToken" />
@@ -57,7 +60,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-7">
+						<div class="col-md-8">
 							<div class="row">
 								<div class="col-md-12">
 									<label class="control-label" for="card_expiry_month">Expiry (MM/YYYY)</label>
@@ -89,7 +92,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-5">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label" for="card_cvc">CVC</label>
 								<input type="text" 
@@ -111,13 +114,47 @@
 
 				<div class="col-md-4">
 					<h3>3. Review Order</h3>
-					@forelse( $cart as $item )
-						<li>
-							{{ $item->name }}
-						</li>
-					@empty
-						<p>Shopping cart is empty.</p>
-					@endforelse
+					<div class="ReviewCart">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Product Name</th>
+									<th>Price</th>
+									<th>Qty</th>
+									<th>Subtotal</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach( $cart as $item )
+								<tr>
+									<td width="400">
+										<div class="ReviewCart__item-with-image">
+											<img src="/images/watch_100x132.jpg" 
+												alt="{{ $item->name }}" 
+												title="{{ $item->name }}" 
+												class="img-responsive"
+												width="60" height="80" />
+											<p>{{ $item->name }}</p>
+										</div>
+									</td>
+									<td width="140"><span class="price">AED {{ $item->price }}</span></td>
+									<td width="140">{{ $item->qty }}</td>
+									<td width="140"><span class="price">AED {{ $item->subtotal }}</span></td>
+								</tr>
+								@endforeach
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3">
+										<h5 class="text-right">Total</h5>
+									</td>
+									<td>
+										<h5>AED {{ $subtotal }}</h5>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
 					
 					<div class="{{ $errors->has('terms') ? 'has-error' : '' }}">
 						<div class="checkbox">

@@ -31,6 +31,26 @@
 	}
 }
 
+.ReviewCart {
+	th {
+		font-weight: normal;
+	}
+}
+
+.ReviewCart__item-with-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	p {
+		font-size: 12px;
+		text-align: center;
+	}
+	img {
+		margin-bottom: 5px;
+	}
+}
+
 .Payment__errors {
 	display: none;
     padding: 7px 10px;

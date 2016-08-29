@@ -1,5 +1,7 @@
 import React from 'react';
 
+const csrf_token = $('meta[name="csrf_token"]').attr('content');
+
 class Item extends React.Component
 {
 	render()
@@ -31,7 +33,8 @@ class Item extends React.Component
 
     				<div className="Card__action">
     					<form method="POST" action="/cart">
-    						<input type="hidden" name="item_id" value={item.id} />
+                            <input type="hidden" name="_token" value={csrf_token} />
+                            <input type="hidden" name="item_id" value={item.id} />
     						<div className="form-group">
     							<button className="btn btn-default">Add to cart</button>
     						</div>

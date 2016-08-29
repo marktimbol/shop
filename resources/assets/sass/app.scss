@@ -4,26 +4,9 @@ body {
 	background-color: white;
 }
 
-.Page__title {
-	font-size: 18px;
-	margin-top: 0;
-}
-
-.Subpage__subtitle--container {
-	margin: 70px 0px;
-}
-
-.Subpage__subtitle {
-	text-align: center;
-}
-
-.Subpage__subtitle--small {
-	color: #555;
-	text-align: center;
-}
-
 @import 'components/Home';
 @import 'components/Subheader';
+@import 'components/Subpage';
 @import 'components/Card';
 @import 'components/Item';
 @import 'components/Cart';

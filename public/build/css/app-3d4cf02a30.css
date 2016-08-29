@@ -6761,20 +6761,6 @@ body {
   font-size: 14px;
   background-color: white; }
 
-.Page__title {
-  font-size: 18px;
-  margin-top: 0; }
-
-.Subpage__subtitle--container {
-  margin: 70px 0px; }
-
-.Subpage__subtitle {
-  text-align: center; }
-
-.Subpage__subtitle--small {
-  color: #555;
-  text-align: center; }
-
 .Home__bg {
   background: url("/images/top-bg.jpg") no-repeat center center;
   background-size: cover; }
@@ -6896,6 +6882,20 @@ body {
   height: 420px;
   background: url("/images/subheader-item-bg.jpg") center center no-repeat;
   background-size: cover; }
+
+.Page__title {
+  font-size: 18px;
+  margin-top: 0; }
+
+.Subpage__subtitle--container {
+  margin: 70px 0px; }
+
+.Subpage__subtitle {
+  text-align: center; }
+
+.Subpage__subtitle--small {
+  color: #555;
+  text-align: center; }
 
 .Cards {
   overflow: hidden; }
@@ -7080,6 +7080,14 @@ body {
   display: none;
   padding: 7px 10px; }
 
+.Footer__contents {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+
 footer {
   padding: 70px 0px;
   background: url("/images/footer-bg.jpg") no-repeat;
@@ -7152,7 +7160,16 @@ footer {
     flex: 0.3; }
   .Item__availability--stocks-left {
     -ms-flex: 0.6;
-    flex: 0.6; } }
+    flex: 0.6; }
+  .Footer__contents {
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    .Footer__contents h4, .Footer__contents ul, .Footer__contents p {
+      text-align: center; }
+    .Footer__contents h6 {
+      margin-bottom: 20px; }
+    .Footer__contents .footer-logo {
+      margin-bottom: 60px; } }
 
 @media screen and (max-width: 768px) {
   .Home figure h2 {

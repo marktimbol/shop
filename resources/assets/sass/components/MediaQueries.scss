@@ -61,6 +61,22 @@
 	.Item__availability--stocks-left {
 		flex: 0.6;
 	}
+
+	.Footer__contents {
+		flex-direction: column;
+
+		h4, ul, p {
+			text-align: center;
+		}
+
+		h6 {
+			margin-bottom: 20px;
+		}
+
+		.footer-logo {
+			margin-bottom: 60px;
+		}
+	}
 }
 
 @media screen and (max-width: 768px) {

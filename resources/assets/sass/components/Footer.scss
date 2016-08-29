@@ -1,3 +1,9 @@
+.Footer__contents {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 footer {
 	padding: 70px 0px;
 	background: url('/images/footer-bg.jpg') no-repeat;

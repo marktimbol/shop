@@ -252,8 +252,8 @@ body {
   margin: 20px 0px; }
 
 .Item__price--old {
-  -ms-flex: 0.1;
-  flex: 0.1;
+  -ms-flex: 0.15;
+  flex: 0.15;
   color: #999;
   text-decoration: line-through; }
 

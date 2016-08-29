@@ -24,7 +24,8 @@ blockquote {
 footer {
   padding: 70px 0px;
   background: url("/images/footer-bg.jpg") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  margin-top: 40px; }
   footer h4, footer p {
     color: white; }
   footer p {
@@ -82,42 +83,42 @@ footer {
     justify-content: center;
     -ms-flex-direction: column;
     flex-direction: column; }
-    .Home figure figcaption blockquote {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      -ms-flex-align: center;
-      align-items: center;
-      -ms-flex-pack: center;
-      justify-content: center; }
-      .Home figure figcaption blockquote .quote {
-        color: #ccc;
-        font-size: 18px;
-        font-style: italic;
-        text-align: center;
-        line-height: 24px;
-        margin-bottom: 50px; }
-      .Home figure figcaption blockquote .author {
-        margin: 0;
-        color: #ccc;
-        font-size: 13px;
-        font-weight: 400;
-        letter-spacing: 0.25em;
-        text-transform: uppercase; }
-      .Home figure figcaption blockquote .designation {
-        margin: 0;
-        color: #666;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 18px; }
-      .Home figure figcaption blockquote::before {
-        content: "\f10d";
-        font-family: FontAwesome;
-        font-size: 36px;
-        color: #cc9966;
-        margin-bottom: 60px;
-        display: inline-block; }
+  .Home figure blockquote {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+    .Home figure blockquote .author {
+      margin: 0;
+      color: #ccc;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase; }
+    .Home figure blockquote .designation {
+      margin: 0;
+      color: #666;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 18px; }
+    .Home figure blockquote::before {
+      content: "\f10d";
+      font-family: FontAwesome;
+      font-size: 36px;
+      color: #cc9966;
+      margin-bottom: 60px;
+      display: inline-block; }
+  .Home figure .quote {
+    color: #ccc;
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+    line-height: 24px;
+    margin-bottom: 50px; }
 
 .Home .Figure--with-padding {
   padding: 40px 0px; }
@@ -150,6 +151,40 @@ footer {
 .Home__subtitle {
   color: #555;
   text-align: center; }
+
+.Subheader {
+  height: 300px;
+  background: url("/images/subheader-bg.jpg") no-repeat;
+  background-size: cover;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  position: relative; }
+  .Subheader::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); }
+  .Subheader h2 {
+    width: 80%;
+    color: white;
+    z-index: 1;
+    text-align: center; }
+
+.Subheader--item {
+  height: 420px;
+  background: url("/images/subheader-item-bg.jpg") center center no-repeat;
+  background-size: cover; }
+
+.Cards {
+  overflow: hidden; }
 
 .Card {
   position: relative; }
@@ -284,7 +319,32 @@ footer {
   .Home .Figure__content {
     width: 90%; }
   .Home .Figure__reverse {
-    -ms-flex-direction: column-reverse;
-    flex-direction: column-reverse; } }
+    -ms-flex-direction: column;
+    flex-direction: column; } }
+
+@media screen and (max-width: 414px) {
+  .Home figure {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 20px; }
+  .Home .Figure__reverse {
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  .Home .Figure__content {
+    width: 90%;
+    padding: 20px 0px; } }
+
+@media screen and (max-width: 768px) {
+  .Home figure h2 {
+    font-size: 26px;
+    margin-bottom: 20px; }
+  .Home figure h3 {
+    margin-bottom: 10px; }
+  .Home figure p {
+    margin-bottom: 0; }
+  .Home figure blockquote::before {
+    margin-bottom: 30px; }
+  .Home figure .quote {
+    margin-bottom: 30px; } }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
+@section('subheader')
+	<div class="Subheader">
+		<h2>Shopping Cart</h2>
+	</div>
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Shopping Cart</h2>
+				<h3>Your cart items</h3>
 			</div>
 			<div class="col-md-12 Cart {{ $cart->count() < 1 ? 'Cart--isEmpty' : '' }}">
 				@if( $cart->count() > 0 )

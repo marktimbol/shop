@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('subheader')
+	<div class="Subheader Subheader--item">
+		<h2>{{ $item->name }}</h2>
+	</div>
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row Item">

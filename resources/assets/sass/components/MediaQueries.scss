@@ -1,4 +1,4 @@
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 320px) {	// iPhone 5
 	.Home {
 		figure {
 			flex-direction: column;
@@ -17,7 +17,49 @@
 		}
 
 		.Figure__reverse {
-			flex-direction: column-reverse;
+			flex-direction: column;
+		}
+	}
+}
+
+@media screen and (max-width: 414px) {	// iPhone6 Plus
+	.Home {
+		figure {
+			flex-direction: column;
+			margin-bottom: 20px;
+		}
+		.Figure__reverse {
+			flex-direction: column;
+		}
+
+		.Figure__content {
+			width: 90%;
+			padding: 20px 0px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.Home {
+		figure {
+			h2 {
+				font-size: 26px;
+				margin-bottom: 20px;
+			}
+			h3 {
+				margin-bottom: 10px;
+			}
+			p {
+				margin-bottom: 0;
+			}
+
+			blockquote::before {
+				margin-bottom: 30px;
+			}
+
+			.quote {
+				margin-bottom: 30px;
+			}
 		}
 	}
 }

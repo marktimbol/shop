@@ -118,10 +118,10 @@
             </div>
         </div>
 
-        <ul>
+        <ul class="Cards">
         	@foreach($items as $item)
         		<li>
-        			<div class="Card col-md-3">
+        			<div class="Card col-md-3 col-xs-6">
         				<div class="Card__info Item--is-new">
         					<span>New</span>
         				</div>

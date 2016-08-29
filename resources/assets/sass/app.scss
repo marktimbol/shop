@@ -31,7 +31,7 @@ footer {
 	padding: 70px 0px;
 	background: url('/images/footer-bg.jpg') no-repeat;
 	background-size: cover;
-
+	margin-top: 40px;
 	h4, p {
 		color: white;
 	}
@@ -74,6 +74,7 @@ footer {
 }
 
 @import 'components/Home';
+@import 'components/Subheader';
 @import 'components/Card';
 @import 'components/Item';
 @import 'components/Cart';

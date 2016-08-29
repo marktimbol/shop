@@ -110,9 +110,9 @@
         <div class="container">
             <div class="row">
             	<div class="col-md-12">
-            		<div class="Home__title--container">
-            			<h2 class="Home__title">Featured products</h2>
-            			<p class="Home__subtitle">We showcase things what you need</p>
+            		<div class="Subpage__subtitle--container">
+            			<h2 class="Subpage__subtitle">Featured products</h2>
+            			<p class="Subpage__subtitle--small">We showcase things what you need</p>
             		</div>
             	</div>
             </div>
@@ -162,18 +162,9 @@
         <div class="container">
             <div class="row">
             	<div class="col-md-12">
-            		<div class="Home__title--container">
-            			<h2 class="Home__title">Latest from our blog</h2>
-            			<p class="Home__subtitle">We provide things what you need</p>
-            		</div>
-            	</div>
-            </div>
-
-            <div class="row">
-            	<div class="col-md-12">
-            		<div class="Home__title--container">
-            			<h2 class="Home__title">Follow us on Instagram</h2>
-            			<p class="Home__subtitle">Because why not?</p>
+            		<div class="Subpage__subtitle--container">
+            			<h2 class="Subpage__subtitle">Follow us on Instagram</h2>
+            			<p class="Subpage__subtitle--small">Because why not?</p>
             		</div>
             	</div>
             </div>

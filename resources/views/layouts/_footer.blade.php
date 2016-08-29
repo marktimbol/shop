@@ -4,11 +4,9 @@
 			<div class="col-md-4">
 				<h4>Contact Us</h4>
 				<p>
-					123 New Design Str, Melbourne, Australia<br>
-					Email: support@typostores.com<br>
-					Phone 01: +00 (9) 123 3456 789<br>
-					Phone 02: +00 (9) 123 3456 788<br>
-					Fax: +00 (9) 643 6543 898
+					Room 708 Clock Plaza, Al Rigga, Dubai, UAE<br />
+					Email: mark.timbol@hotmail.com<br />
+					Mobile: +971 56 375 9865
 				</p>
 			</div>
 
@@ -33,6 +31,9 @@
 					</li>
 					<li>
 						<a href="#">Street style with logancee fashion</a>
+					</li>					
+					<li>
+						<a href="http://logancee15.typostores.xyz/" target="_blank">The Inspiration</a>
 					</li>
 				</ul>
 			</div>

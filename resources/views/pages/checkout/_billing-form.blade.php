@@ -1,4 +1,7 @@
-<h3>1. Billing Information</h3>
+<div class="Subpage__subtitle--container">
+	<h3 class="Subpage__subtitle">1. Billing Information</h3>
+</div>
+
 @if( ! auth()->check() )
 	<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
 		<label class="control-label" for="email">Email Address</label>

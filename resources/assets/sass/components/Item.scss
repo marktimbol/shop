@@ -1,10 +1,55 @@
+.Item__images--container {
+	margin-bottom: 40px;
+}
+
+.Item__thumbnails {
+	display: flex;
+	margin-top: 20px;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .Item__name {
 	font-size: 18px;
 	margin-top: 0;
 }
 
-.Item__price {
+.Item__description {
+	color: #555;
+	margin: 40px 0px;
+}
+
+.Item__price--container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 20px 0px;
+}
+
+.Item__price--old {
+	flex: 0.1;
+	color: #999;
+	text-decoration: line-through;
+}
+
+.Item__price--new {
 	color: #cc0000;
 	font-weight: bold;
 	font-size: 24px;
+}
+
+.Item__availability {
+	display: flex;
+}
+
+.Item__availability--stocks-left {
+	flex: 0.2;
+}
+
+.Item__availability--status {
+
+}
+
+.Item--is-available {
+	color: #99cc00;
 }

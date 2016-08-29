@@ -10,7 +10,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Your cart items</h3>
+				<div class="Subpage__subtitle--container">
+					<h3 class="Subpage__subtitle">Your cart items</h3>
+				</div>
 			</div>
 			<div class="col-md-12 Cart {{ $cart->count() < 1 ? 'Cart--isEmpty' : '' }}">
 				@if( $cart->count() > 0 )

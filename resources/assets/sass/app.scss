@@ -4,73 +4,22 @@ body {
 	background-color: white;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-ul {
-	list-style: none;
-	padding-left: 0;
-}
-
-blockquote {
-	border-left: 0;
-}
-
 .Page__title {
 	font-size: 18px;
 	margin-top: 0;
 }
 
-.navbar {
-	margin-bottom: 0;
+.Subpage__subtitle--container {
+	margin: 40px 0px;
 }
 
-footer {
-	padding: 70px 0px;
-	background: url('/images/footer-bg.jpg') no-repeat;
-	background-size: cover;
-	margin-top: 40px;
-	h4, p {
-		color: white;
-	}
+.Subpage__subtitle {
+	text-align: center;
+}
 
-	p {
-		font-size: 13px;
-		line-height: 24px;
-	}
-
-	h6 {
-		color: white;
-		font-size: 13px;
-		text-align: center;
-	}
-
-	.footer-logo {
-		margin-bottom: 120px;
-		img {
-			margin: 0 auto;
-		}
-	}
-
-	h4 {
-		margin: 40px 0px;
-	}
-
-	ul {
-		text-align: right;
-		li {
-			line-height: 24px;
-			a {
-				color: white;
-				&:hover {
-					color: white;
-					text-decoration: underline;
-				}
-			}
-		}
-	}
+.Subpage__subtitle--small {
+	color: #555;
+	text-align: center;
 }
 
 @import 'components/Home';
@@ -78,4 +27,6 @@ footer {
 @import 'components/Card';
 @import 'components/Item';
 @import 'components/Cart';
+@import 'components/Footer';
 @import 'components/MediaQueries';
+@import 'components/Overwrite';

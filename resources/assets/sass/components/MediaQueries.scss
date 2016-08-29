@@ -20,6 +20,18 @@
 			flex-direction: column;
 		}
 	}
+
+	.Subheader {
+		background-position: center center;
+	}
+
+	.Item__price--old {
+		flex: 0.3
+	}
+
+	.Item__availability--stocks-left {
+		flex: 0.8 !important; 
+	}
 }
 
 @media screen and (max-width: 414px) {	// iPhone6 Plus
@@ -36,6 +48,18 @@
 			width: 90%;
 			padding: 20px 0px;
 		}
+	}
+
+	.Subheader {
+		background-position: center center;
+	}
+
+	.Item__price--old {
+		flex: 0.3
+	}
+
+	.Item__availability--stocks-left {
+		flex: 0.6;
 	}
 }
 

@@ -17,7 +17,9 @@
 				</div>
 
 				<div class="col-md-4">
-					<h3>2. Payment Method</h3>
+					<div class="Subpage__subtitle--container">
+						<h3 class="Subpage__subtitle">2. Payment Method</h3>
+					</div>
 					<div class="radio">
 						<label>
 							<input type="radio" 
@@ -113,7 +115,9 @@
 				</div>
 
 				<div class="col-md-4">
-					<h3>3. Review Order</h3>
+					<div class="Subpage__subtitle--container">
+						<h3 class="Subpage__subtitle">3. Review Order</h3>
+					</div>
 					<div class="ReviewCart">
 						<table class="table table-bordered">
 							<thead>

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-	<div class="container">
+	<div class="container Checkout">
 		<div class="row">
 			<form method="POST" action="{{ route('checkout') }}" id="billingForm">
 				{{ csrf_field() }}

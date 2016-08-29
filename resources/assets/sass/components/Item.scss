@@ -46,10 +46,10 @@
 	flex: 0.2;
 }
 
-.Item__availability--status {
-
-}
-
 .Item--is-available {
 	color: #99cc00;
+}
+
+.Item--is-not-available {
+	color: #cc0000;
 }

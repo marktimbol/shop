@@ -48,5 +48,6 @@
 	</div>
 </footer>
 
-@yield('footer')
 <script src="{{ elixir('js/app.js') }}"></script>
+
+@yield('footer_scripts')

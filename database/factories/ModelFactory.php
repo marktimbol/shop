@@ -32,7 +32,9 @@ $factory->define(App\Item::class, function (Faker\Generator $faker) {
         'brand_id'  => factory(App\Brand::class)->create()->id,
         'name' => $faker->sentence,
         'slug'	=> $faker->slug,
-        'price'	=> $faker->randomNumber(2)
+        'old_price' => $faker->randomNumber(2),
+        'price'	=> $faker->randomNumber(2),
+        'quantity'  => $faker->randomNumber(2),
     ];
 });
 

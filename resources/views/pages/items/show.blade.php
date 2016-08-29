@@ -39,10 +39,15 @@
 
 				<div class="Item__availability">
 					<p class="Item__availability--stocks-left">
-						<i class="fa fa-database"></i> Only 89 left
+						<i class="fa fa-database"></i> Only {{ $item->quantity }} left
 					</p>
 					<p class="Item__availability--status">
-						<strong>Availability:</strong> <span class="Item--is-available">In Stock</span>
+						<strong>Availability:</strong> 
+						@if( $item->quantity > 0 )
+							<span class="Item--is-available">In Stock</span>
+						@else
+							<span class="Item--is-not-available">No Stock</span>
+						@endif
 					</p>
 				</div>	
 

@@ -24,8 +24,22 @@ elixir(function(mix) {
     		'app.js',
     	], 'public/js/app.js')
 
+        .styles([
+            bowersPath + 'owl-carousel/owl-carousel/owl.carousel.css',
+            bowersPath + 'owl-carousel/owl-carousel/owl.theme.css',
+        ], 'public/css/home.css')
+
+        .scripts([
+            bowersPath + 'owl-carousel/owl-carousel/owl.carousel.js',
+            'owl-carousel.js'
+        ], 'public/js/home.js')
+
+        .copy('bower_components/owl-carousel/owl-carousel/grabbing.png', 'public/build/css')
+
     	.version([
     		'public/css/app.css',
     		'public/js/app.js',
+            'public/css/home.css',
+            'public/js/home.js'
     	]);
 });

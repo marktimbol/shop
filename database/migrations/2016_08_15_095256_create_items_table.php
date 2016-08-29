@@ -17,7 +17,9 @@ class CreateItemsTable extends Migration
             $table->integer('brand_id')->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->double('old_price');
             $table->double('price');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

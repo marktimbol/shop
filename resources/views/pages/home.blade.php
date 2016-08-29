@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('header_styles')
+    <link rel="stylesheet" href="{{ elixir('css/home.css') }}" />
+@endsection
+
 @section('content')
     <div class="Home">
     	<div class="Home__bg">
@@ -118,10 +122,10 @@
             </div>
         </div>
 
-        <ul class="Cards">
+        <ul id="FeaturedItems" class="Cards">
         	@foreach($items as $item)
         		<li>
-        			<div class="Card col-md-3 col-xs-6">
+        			<div class="Card">
         				<div class="Card__info Item--is-new">
         					<span>New</span>
         				</div>
@@ -170,4 +174,8 @@
             </div>
         </div>
     </div>  
+@endsection
+
+@section('footer_scripts')
+    <script src="{{ elixir('js/home.js') }}"></script>
 @endsection

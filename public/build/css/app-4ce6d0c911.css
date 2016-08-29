@@ -6901,7 +6901,8 @@ body {
   overflow: hidden; }
 
 .Card {
-  position: relative; }
+  position: relative;
+  margin-bottom: 30px; }
 
 .Card__info {
   position: absolute;
@@ -7030,6 +7031,9 @@ body {
 .Item--is-available {
   color: #99cc00; }
 
+.Item--is-not-available {
+  color: #cc0000; }
+
 .Cart .table th {
   text-transform: uppercase; }
 
@@ -7117,6 +7121,15 @@ footer {
         footer ul li a:hover {
           color: white;
           text-decoration: underline; }
+
+.Cart .Subpage__subtitle--container {
+  margin: 30px 0px; }
+
+.Checkout .Subpage__subtitle--container {
+  margin: 30px 0px; }
+
+.Checkout .Subpage__subtitle {
+  text-align: left; }
 
 @media screen and (max-width: 320px) {
   .Home figure {

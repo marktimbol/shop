@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-	<div class="container">
+	<div class="container Cart">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="Subpage__subtitle--container">

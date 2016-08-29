@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use JavaScript;
 use App\Brand;
 use App\Http\Requests;
 use App\Item;
@@ -13,6 +14,10 @@ class ItemsController extends Controller
 	{
 		$items = Item::latest()->get();
 		$brands = Brand::latest()->get();
+
+		JavaScript::put([
+			'items'	=> $items
+		]);
 		
 		return view('pages.items.index', compact('items', 'brands'));
 	}

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header_styles')
-    <link rel="stylesheet" href="{{ elixir('css/home.css') }}" />
+    <link rel="stylesheet" href="{{ elixir('css/carousel.css') }}" />
 @endsection
 
 @section('subheader')
@@ -138,5 +138,5 @@
 @endsection
 
 @section('footer_scripts')
-    <script src="{{ elixir('js/home.js') }}"></script>
+    <script src="{{ elixir('js/carousel.js') }}"></script>
 @endsection

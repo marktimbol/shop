@@ -1513,4 +1513,4 @@ if (typeof Object.create !== "function") {
 $("#FeaturedItems").owlCarousel({
 	items: 5
 });
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=carousel.js.map

@@ -12,6 +12,11 @@ const bowersPath = '../../../bower_components/';
  */
 
 elixir(function(mix) {
+
+    mix.browserify([
+        '/components/Items.js'
+    ], 'public/js/Items.js');
+
     mix.sass('app.scss', 'resources/assets/css/app.css')
     	.styles([
             bowersPath + 'bootstrap/dist/css/bootstrap.css',
@@ -21,25 +26,26 @@ elixir(function(mix) {
     	.scripts([
             bowersPath + 'jquery/dist/jquery.js',
             bowersPath + 'bootstrap/dist/js/bootstrap.js',
-    		'app.js',
+            'app.js',
     	], 'public/js/app.js')
 
         .styles([
             bowersPath + 'owl-carousel/owl-carousel/owl.carousel.css',
             bowersPath + 'owl-carousel/owl-carousel/owl.theme.css',
-        ], 'public/css/home.css')
+        ], 'public/css/carousel.css')
 
         .scripts([
             bowersPath + 'owl-carousel/owl-carousel/owl.carousel.js',
             'owl-carousel.js'
-        ], 'public/js/home.js')
+        ], 'public/js/carousel.js')
 
         .copy('bower_components/owl-carousel/owl-carousel/grabbing.png', 'public/build/css')
 
     	.version([
     		'public/css/app.css',
-    		'public/js/app.js',
-            'public/css/home.css',
-            'public/js/home.js'
+            'public/js/app.js',
+    		'public/js/Items.js',
+            'public/css/carousel.css',
+            'public/js/carousel.js'
     	]);
 });

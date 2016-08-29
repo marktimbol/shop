@@ -27,7 +27,8 @@
 				</form>
 			</div>
 			<div class="col-md-9">
-				<ul>
+				<div id="Items"></div>
+{{-- 				<ul>
 					@forelse($items as $item)
 						<li>
 							<div class="Card col-md-4">
@@ -74,8 +75,12 @@
 					@empty
 						<h5>You don't have any items available</h5>
 					@endforelse
-				</ul>
+				</ul> --}}
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('footer_scripts')
+	<script src="{{ elixir('js/Items.js') }}"></script>
 @endsection

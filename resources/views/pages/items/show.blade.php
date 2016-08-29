@@ -37,7 +37,7 @@
 			<div class="col-md-8">
 				<h2 class="Item__name">{{ $item->name }}</h2>
 				<div class="Item__price--container">
-					<p class="Item__price--old">AED 99</p>
+					<p class="Item__price--old">AED {{ $item->old_price }}</p>
 					<p class="Item__price--new">AED {{ $item->price }}</p>
 				</div>
 
@@ -106,7 +106,7 @@
 										<h3 class="Card__title">{{ $item->name }}</h3>
 										<div class="Card__price">
 											<h4 class="Card__price--new">AED {{ $item->price }}</h4>
-											<h5 class="Card__price--old">AED 99</h5>
+											<h5 class="Card__price--old">AED {{ $item->old_price }}</h5>
 										</div>
 									</div>
 

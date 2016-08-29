@@ -10,7 +10,7 @@
 	        <div class="container">
 	            <div class="row">
 	            	<div class="col-md-12">
-	                	<figure class="Figure__reverse Figure--with-padding">
+	                	<figure class="Hero Figure__reverse Figure--with-padding">
 	                		<div class="Figure__right">
 	                			<div class="Figure__content">
 				                    <img src="/images/slide-watch.png" 
@@ -109,16 +109,14 @@
                 	</figure>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
             <div class="row">
-            	<div class="col-md-12">
-            		<div class="Subpage__subtitle--container">
-            			<h2 class="Subpage__subtitle">Featured products</h2>
-            			<p class="Subpage__subtitle--small">We showcase things what you need</p>
-            		</div>
-            	</div>
+                <div class="col-md-12">
+                    <div class="Subpage__subtitle--container">
+                        <h2 class="Subpage__subtitle">Featured products</h2>
+                        <p class="Subpage__subtitle--small">We showcase things what you need</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -145,7 +143,7 @@
         					<h3 class="Card__title">{{ $item->name }}</h3>
         					<div class="Card__price">
         						<h4 class="Card__price--new">AED {{ $item->price }}</h4>
-        						<h5 class="Card__price--old">AED 99</h5>
+        						<h5 class="Card__price--old">AED {{ $item->old_price }}</h5>
         					</div>
         				</div>
 

@@ -408,6 +408,13 @@ footer {
   .Home .Figure__content {
     width: 90%;
     padding: 20px 0px; }
+  .Hero .Figure__left {
+    width: 60%; }
+  .Hero .Figure__right {
+    position: absolute;
+    right: -160px; }
+  .Hero .Figure__content {
+    width: 50%; }
   .Subheader {
     background-position: center center; }
   .Item__price--old {

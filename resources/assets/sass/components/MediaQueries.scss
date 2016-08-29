@@ -50,6 +50,21 @@
 		}
 	}
 
+	.Hero {
+		.Figure__left {
+			width: 60%;
+		}
+
+		.Figure__right {
+			position: absolute;
+			right: -160px;
+		}
+
+		.Figure__content {
+			width: 50%;
+		}
+	}
+
 	.Subheader {
 		background-position: center center;
 	}

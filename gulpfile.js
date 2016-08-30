@@ -17,6 +17,10 @@ elixir(function(mix) {
         '/components/Items.js'
     ], 'public/js/Items.js');
 
+    mix.browserify([
+        '/components/Checkout.js'
+    ], 'public/js/Checkout.js');
+
     mix.sass('app.scss', 'resources/assets/css/app.css')
     	.styles([
             bowersPath + 'bootstrap/dist/css/bootstrap.css',
@@ -48,6 +52,7 @@ elixir(function(mix) {
             'public/js/app.js',
             'public/css/carousel.css',
             'public/js/carousel.js',
-    		'public/js/Items.js',
+            'public/js/Items.js',
+    		'public/js/Checkout.js',
     	]);
 });

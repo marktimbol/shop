@@ -8064,6 +8064,10 @@ footer {
 .Checkout .Subpage__subtitle {
   text-align: left; }
 
+.Checkout h3:not(.Subpage__subtitle) {
+  margin-top: 40px;
+  margin-bottom: 30px; }
+
 @media screen and (max-width: 320px) {
   .Home figure {
     -ms-flex-direction: column;

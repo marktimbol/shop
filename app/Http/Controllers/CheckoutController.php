@@ -26,6 +26,14 @@ class CheckoutController extends Controller
         
         if( $cart->count() > 0 ) {
             $subtotal = $this->cart->subtotal();
+            
+            \JavaScript::put([
+                'cart'  => $cart->toArray(),
+                'subtotal'  => $this->cart->subtotal(),
+                'user'  => auth()->user(),
+                'signedIn'  => auth()->check(),
+            ]);
+
     	   return view('pages.checkout.index', compact('cart', 'subtotal')); 
         }
 

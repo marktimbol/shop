@@ -20,12 +20,14 @@ elixir(function(mix) {
     mix.sass('app.scss', 'resources/assets/css/app.css')
     	.styles([
             bowersPath + 'bootstrap/dist/css/bootstrap.css',
+            bowersPath + 'sweetalert/dist/sweetalert.css',
     		'app.css',
     	], 'public/css/app.css')
 
     	.scripts([
             bowersPath + 'jquery/dist/jquery.js',
             bowersPath + 'bootstrap/dist/js/bootstrap.js',
+            bowersPath + 'sweetalert/dist/sweetalert-dev.js',
             'app.js',
     	], 'public/js/app.js')
 
@@ -44,8 +46,8 @@ elixir(function(mix) {
     	.version([
     		'public/css/app.css',
             'public/js/app.js',
-    		'public/js/Items.js',
             'public/css/carousel.css',
-            'public/js/carousel.js'
+            'public/js/carousel.js',
+    		'public/js/Items.js',
     	]);
 });

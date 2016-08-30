@@ -21,6 +21,7 @@ class CartController extends Controller
 	{
 		$cart = $this->cart->all();
 		$subtotal = $this->cart->subtotal();
+		
 		return view('pages.cart.index', compact('cart', 'subtotal'));
 	}
 
@@ -28,6 +29,8 @@ class CartController extends Controller
     {
     	$item = Item::findOrFail($request->item_id);
     	$this->cart->store($item);
+
+    	flash()->success('Item was added on the cart.');
 
     	return back();
     }

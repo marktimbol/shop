@@ -13,5 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         factory(App\Item::class, 10)->create();
+        
+        factory(App\User::class)->create([
+            'email' => 'mark@timbol.com',
+            'password'  => bcrypt('marktimbol')
+        ]);
     }
 }

@@ -45,7 +45,7 @@
 </div>
 
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-6 col-xs-6">
 		<div class="form-group {{ $errors->has('city') ? 'has-error' : '' }}">
 			<label class="control-label" for="city">City</label>
 			<input type="text" 
@@ -57,7 +57,7 @@
 		</div>
 	</div>
 
-	<div class="col-md-6">
+	<div class="col-md-6 col-xs-6">
 		<div class="form-group {{ $errors->has('state') ? 'has-error' : '' }}">
 			<label class="control-label" for="state">State/Province</label>
 			<input type="text" 

@@ -156,6 +156,7 @@ return [
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
         
         /*
          * Application Service Providers...

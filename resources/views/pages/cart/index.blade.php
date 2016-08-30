@@ -62,7 +62,7 @@
 					<a href="/checkout" class="btn btn-default">Checkout</a>
 				@else
 					<h4>Shopping cart is empty</h4>
-					<p class="lead">You have no items in your shopping cart.</p>
+					<p>You have no items in your shopping cart.</p>
 
 					<p><a href="/shop">Click here</a> to continue shopping.</p>
 				@endif

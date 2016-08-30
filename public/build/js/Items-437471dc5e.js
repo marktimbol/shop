@@ -20743,7 +20743,7 @@ module.exports = require('./lib/React');
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-                        value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -20763,88 +20763,124 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var csrf_token = $('meta[name="csrf_token"]').attr('content');
 
 var Item = function (_React$Component) {
-                        _inherits(Item, _React$Component);
+    _inherits(Item, _React$Component);
 
-                        function Item() {
-                                                _classCallCheck(this, Item);
+    function Item(props) {
+        _classCallCheck(this, Item);
 
-                                                return _possibleConstructorReturn(this, Object.getPrototypeOf(Item).apply(this, arguments));
-                        }
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Item).call(this, props));
 
-                        _createClass(Item, [{
-                                                key: 'render',
-                                                value: function render() {
-                                                                        var item = this.props.item;
-                                                                        var url = '/items/' + item.slug;
+        _this.state = {
+            formWasSubmitted: false
+        };
+        return _this;
+    }
 
-                                                                        return _react2.default.createElement(
-                                                                                                'li',
-                                                                                                null,
-                                                                                                _react2.default.createElement(
-                                                                                                                        'div',
-                                                                                                                        { className: 'Card col-md-4' },
-                                                                                                                        _react2.default.createElement(
-                                                                                                                                                'div',
-                                                                                                                                                { className: 'Card_image' },
-                                                                                                                                                _react2.default.createElement(
-                                                                                                                                                                        'a',
-                                                                                                                                                                        { href: url },
-                                                                                                                                                                        _react2.default.createElement('img', { src: '/images/watch.jpg',
-                                                                                                                                                                                                alt: item.name,
-                                                                                                                                                                                                title: item.name,
-                                                                                                                                                                                                className: 'img-responsive' })
-                                                                                                                                                )
-                                                                                                                        ),
-                                                                                                                        _react2.default.createElement(
-                                                                                                                                                'div',
-                                                                                                                                                { className: 'Card__content' },
-                                                                                                                                                _react2.default.createElement(
-                                                                                                                                                                        'h3',
-                                                                                                                                                                        { className: 'Card__title' },
-                                                                                                                                                                        item.name
-                                                                                                                                                ),
-                                                                                                                                                _react2.default.createElement(
-                                                                                                                                                                        'div',
-                                                                                                                                                                        { className: 'Card__price' },
-                                                                                                                                                                        _react2.default.createElement(
-                                                                                                                                                                                                'h4',
-                                                                                                                                                                                                { className: 'Card__price--new' },
-                                                                                                                                                                                                'AED ',
-                                                                                                                                                                                                item.price
-                                                                                                                                                                        ),
-                                                                                                                                                                        item.price < item.old_price ? _react2.default.createElement(
-                                                                                                                                                                                                'h5',
-                                                                                                                                                                                                { className: 'Card__price--old' },
-                                                                                                                                                                                                'AED ',
-                                                                                                                                                                                                item.old_price
-                                                                                                                                                                        ) : ''
-                                                                                                                                                )
-                                                                                                                        ),
-                                                                                                                        _react2.default.createElement(
-                                                                                                                                                'div',
-                                                                                                                                                { className: 'Card__action' },
-                                                                                                                                                _react2.default.createElement(
-                                                                                                                                                                        'form',
-                                                                                                                                                                        { method: 'POST', action: '/cart' },
-                                                                                                                                                                        _react2.default.createElement('input', { type: 'hidden', name: '_token', value: csrf_token }),
-                                                                                                                                                                        _react2.default.createElement('input', { type: 'hidden', name: 'item_id', value: item.id }),
-                                                                                                                                                                        _react2.default.createElement(
-                                                                                                                                                                                                'div',
-                                                                                                                                                                                                { className: 'form-group' },
-                                                                                                                                                                                                _react2.default.createElement(
-                                                                                                                                                                                                                        'button',
-                                                                                                                                                                                                                        { className: 'btn btn-default' },
-                                                                                                                                                                                                                        'Add to cart'
-                                                                                                                                                                                                )
-                                                                                                                                                                        )
-                                                                                                                                                )
-                                                                                                                        )
-                                                                                                )
-                                                                        );
-                                                }
-                        }]);
+    _createClass(Item, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            this.setState({ formWasSubmitted: true });
 
-                        return Item;
+            this.addToCart();
+        }
+    }, {
+        key: 'addToCart',
+        value: function addToCart() {
+            $.ajax({
+                url: '/cart',
+                method: 'POST',
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': csrf_token
+                },
+                data: {
+                    item_id: this.props.item.id
+                },
+                success: function (result) {
+                    this.setState({ formWasSubmitted: false });
+                }.bind(this),
+                error: function (xhr, status, err) {}.bind(this)
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var item = this.props.item;
+            var url = '/items/' + item.slug;
+
+            return _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'Card col-md-4' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'Card_image' },
+                        _react2.default.createElement(
+                            'a',
+                            { href: url },
+                            _react2.default.createElement('img', { src: '/images/watch.jpg',
+                                alt: item.name,
+                                title: item.name,
+                                className: 'img-responsive' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'Card__content' },
+                        _react2.default.createElement(
+                            'h3',
+                            { className: 'Card__title' },
+                            item.name
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'Card__price' },
+                            _react2.default.createElement(
+                                'h4',
+                                { className: 'Card__price--new' },
+                                'AED ',
+                                item.price
+                            ),
+                            this.state.formWasSubmitted,
+                            item.price < item.old_price ? _react2.default.createElement(
+                                'h5',
+                                { className: 'Card__price--old' },
+                                'AED ',
+                                item.old_price
+                            ) : ''
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'Card__action' },
+                        _react2.default.createElement(
+                            'form',
+                            { method: 'POST', onSubmit: this.handleSubmit.bind(this) },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'form-group' },
+                                this.state.formWasSubmitted ? _react2.default.createElement(
+                                    'button',
+                                    { className: 'btn btn-default', disabled: true },
+                                    _react2.default.createElement('i', { className: 'fa fa-spin fa-spinner' }),
+                                    ' Adding to cart'
+                                ) : _react2.default.createElement(
+                                    'button',
+                                    { className: 'btn btn-default' },
+                                    'Add to cart'
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Item;
 }(_react2.default.Component);
 
 exports.default = Item;
@@ -20877,18 +20913,39 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Items = function (_React$Component) {
 	_inherits(Items, _React$Component);
 
-	function Items() {
+	function Items(props) {
 		_classCallCheck(this, Items);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(Items).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Items).call(this, props));
+
+		_this.state = {
+			formWasSubmitted: false
+		};
+		return _this;
 	}
 
 	_createClass(Items, [{
+		key: 'handleSubmit',
+		value: function handleSubmit(item) {
+			console.log(item);
+
+			// Handle action here
+
+			console.log('Loggin');
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var items = window.items.map(function (item, index) {
-				return _react2.default.createElement(_Item2.default, { item: item, key: index });
-			});
+				var _this2 = this;
+
+				return _react2.default.createElement(_Item2.default, {
+					key: index,
+					item: item,
+					addToCart: function addToCart() {
+						return _this2.handleSubmit(item);
+					} });
+			}.bind(this));
 
 			return _react2.default.createElement(
 				'ul',

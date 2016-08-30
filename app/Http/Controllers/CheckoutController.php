@@ -80,6 +80,8 @@ class CheckoutController extends Controller
 
         event( new UserPlacedAnOrder($user, $order) );
 
+        flash()->success('Thank you for purchasing with us. Expect a call from us within 1 working day.');
+        
     	// View successful order page
         return redirect()->route('checkout.success');
     }

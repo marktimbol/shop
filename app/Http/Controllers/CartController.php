@@ -30,8 +30,9 @@ class CartController extends Controller
     	$item = Item::findOrFail($request->item_id);
     	$this->cart->store($item);
 
-    	flash()->success('Item was added on the cart.');
+    	return $this->cart->all();
+    	// flash()->success('Item was added on the cart.');
 
-    	return back();
+    	// return back();
     }
 }

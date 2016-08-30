@@ -32,6 +32,7 @@ elixir(function(mix) {
             bowersPath + 'jquery/dist/jquery.js',
             bowersPath + 'bootstrap/dist/js/bootstrap.js',
             bowersPath + 'sweetalert/dist/sweetalert-dev.js',
+            'stripe.js',
             'app.js',
     	], 'public/js/app.js')
 

@@ -20,9 +20,13 @@ class CartTest extends TestCase
     public function test_it_adds_an_item_on_the_cart()
     {
     	$item = factory(App\Item::class)->create();
-    	$this->visit('/items/'.$item->slug)
-    		->press('Add to cart')
-            ->assertEquals(1, $this->cart->count());
+     
+        $this->visit('/items/'.$item->slug);
+        $this->post('/cart', [
+            'item_id'   => $item->id
+        ]);
+        
+        $this->assertEquals(1, $this->cart->count());
     }
 
     public function test_it_displays_the_items_in_cart()

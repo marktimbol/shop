@@ -1,5 +1,6 @@
 var elixir = require('laravel-elixir');
 const bowersPath = '../../../bower_components/';
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -14,12 +15,20 @@ const bowersPath = '../../../bower_components/';
 elixir(function(mix) {
 
     mix.browserify([
-        '/components/Items.js'
-    ], 'public/js/Items.js');
+            '/components/Items/Items.js'
+        ], 'public/js/Items.js')
 
-    mix.browserify([
-        '/components/Checkout.js'
-    ], 'public/js/Checkout.js');
+        .browserify([
+            '/components/Items/ShowItem.js'
+        ], 'public/js/ShowItem.js')        
+
+        .browserify([
+            '/components/Items/RelatedItems.js'
+        ], 'public/js/RelatedItems.js')
+
+        .browserify([
+            '/components/Checkout/Checkout.js'
+        ], 'public/js/Checkout.js');
 
     mix.sass('app.scss', 'resources/assets/css/app.css')
     	.styles([
@@ -66,6 +75,8 @@ elixir(function(mix) {
             'public/css/price-slider.css',
             'public/js/price-slider.js',
             'public/js/Items.js',
+            'public/js/ShowItem.js',
+            'public/js/RelatedItems.js',
     		'public/js/Checkout.js',
     	]);
 });

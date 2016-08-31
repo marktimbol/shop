@@ -16,6 +16,11 @@ class Item extends Model
 		return $this->belongsTo(Brand::class);
 	}
 
+	public function scopeFeatured($query)
+	{
+		return $query->where('featured', true);
+	}
+
 	public function isNew()
 	{
 		$daysOldToBeConsideredAsNew = 7;

@@ -36,6 +36,10 @@ body {
 		position: absolute;
 		background: #333;
 	}
+
+	.ui-state-hover, .ui-state-focus {
+		outline: none;
+	}
 }
 
 @import 'components/Home';

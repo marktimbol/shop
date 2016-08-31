@@ -30,6 +30,8 @@ body {
     cursor: pointer;
     position: absolute;
     background: #333; }
+  #price-slider .ui-state-hover, #price-slider .ui-state-focus {
+    outline: none; }
 
 .Home__bg {
   background: url("/images/top-bg.jpg") no-repeat center center;
@@ -491,6 +493,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn {
   border-radius: 0; }
+
+.input-group-btn:first-child .btn {
+  margin-right: -2px; }
+
+.input-group-btn .btn:focus {
+  outline: 0; }
 
 .navbar {
   margin-bottom: 0; }

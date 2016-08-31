@@ -10,7 +10,7 @@ class PagesController extends Controller
 {
     public function home()
     {
-    	$items = Item::latest()->get();
+    	$items = Item::featured()->latest()->get();
     	return view('pages.home', compact('items'));
     }
 }

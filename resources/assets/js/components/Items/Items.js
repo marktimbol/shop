@@ -13,24 +13,13 @@ class Items extends React.Component
 		}
 	}
 
-	handleSubmit(item) {
-		console.log(item)
-
-		// Handle action here
-
-		console.log('Loggin');
-	}
-
 	render()
 	{
 		let items = window.items.map(function(item, index) {
 			return (
-				<Item 
-					key={index} 
-					item={item} 
-					addToCart={() => this.handleSubmit(item)} />
+				<Item key={index} item={item} hasColumn={true} />
 			)
-		}.bind(this));
+		});
 
 		return (
 			<ul className="Cards">

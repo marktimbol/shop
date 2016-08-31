@@ -11,9 +11,9 @@ class ShoppingCart
 		return Cart::content();
 	}
 
-	public function store(Item $item)
+	public function store(Item $item, $quantity = null)
 	{
-		Cart::add($item->id, $item->name, 1, $item->price, [
+		Cart::add($item->id, $item->name, $quantity ?: 1, $item->price, [
 			'item' => $item
 		]);
 	}

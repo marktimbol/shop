@@ -28,7 +28,7 @@ class CartController extends Controller
     public function store(Request $request)
     {
     	$item = Item::findOrFail($request->item_id);
-    	$this->cart->store($item);
+    	$this->cart->store($item, $request->quantity);
 
     	return $this->cart->all();
     	// flash()->success('Item was added on the cart.');

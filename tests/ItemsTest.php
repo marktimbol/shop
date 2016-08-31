@@ -11,11 +11,16 @@ class ItemsTest extends TestCase
 
     public function test_it_displays_the_featured_items_on_the_homepage()
     {
-    	$item = factory(App\Item::class)->create();
-        // $item->featured();
-        
+    	$item = factory(App\Item::class)->create([
+            'featured'  => false,
+        ]);
+        $featuredItem = factory(App\Item::class)->create([
+            'featured'  => true
+        ]);
+
     	$this->visit('/')
-    		->see($item->name);
+    		->see($featuredItem->name)
+            ->dontSee($item->name);
     }
 
     public function test_it_displays_all_the_items_on_the_shop_page()
@@ -26,7 +31,24 @@ class ItemsTest extends TestCase
     		->see($item->name);
     }
 
-    public function test_check_whether_the_item_is_on_sale_or_no()
+    public function test_it_checks_whether_the_item_is_featured_or_no()
+    {
+        $item = factory(App\Item::class)->create([
+            'featured'  => true
+        ]);
+        $notFeatured = factory(App\Item::class)->create([
+            'featured'  => false
+        ]);
+
+        $featuredItems = App\Item::featured()->latest()->get();
+
+        foreach( $featuredItems as $featuredItem ) {
+            $this->assertEquals($item->name, $featuredItem->name);
+            $this->assertNotEquals($notFeatured->name, $featuredItem->name);
+        }
+    }
+
+    public function test_it_checks_whether_the_item_is_on_sale_or_no()
     {
         // On Sale
         $item = factory(App\Item::class)->create([
@@ -49,7 +71,7 @@ class ItemsTest extends TestCase
         $this->assertFalse($result);
     }
 
-    public function test_check_whether_the_item_is_new_or_no()
+    public function test_it_checks_whether_the_item_is_new_or_no()
     {
         // Item is new
         $item = factory(App\Item::class)->create();
@@ -70,9 +92,10 @@ class ItemsTest extends TestCase
     {
         $item = factory(App\Item::class)->create([
             'price' => 90,
-            'old_price' => 100
+            'old_price' => 100,
+            'featured'  => true,
         ]);
-
+        
         $discountPercentage = $item->getDiscountPercentage();
 
         $this->assertEquals('-10', $discountPercentage);

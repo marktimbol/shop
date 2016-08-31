@@ -25,6 +25,11 @@ class ItemsController extends Controller
     public function show($item)
     {
     	$relatedItems = Item::latest()->take(10)->get();
+    	\JavaScript::put([
+    		'item'	=> $item,
+    		'relatedItems' => $relatedItems
+    	]);
+    	
     	return view('pages.items.show', compact('item', 'relatedItems'));
     }
 }

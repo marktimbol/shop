@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 const csrf_token = $('meta[name="csrf_token"]').attr('content');
 
@@ -12,7 +13,6 @@ class Item extends React.Component
             formWasSubmitted: false
         }
     }
-
 
     handleSubmit(e) {
         e.preventDefault();
@@ -34,9 +34,22 @@ class Item extends React.Component
             },
             success: function(result) {
                 this.setState({ formWasSubmitted: false });
+                swal({
+                    title: "Shop",  
+                    text: "Item was added on the cart.",  
+                     type: "success", 
+                     showConfirmButton: true,
+                     confirmButtonText: 'Okay'
+                });
             }.bind(this),
             error: function(xhr, status, err) {
-
+                swal({
+                    title: 'Shop',  
+                    text: 'A problem was encountered while adding the item in your cart. Please try again.',
+                    type: 'error', 
+                    showConfirmButton: true,
+                    confirmButtonText: 'Okay'
+                });
             }.bind(this)
         })
     }
@@ -70,11 +83,15 @@ class Item extends React.Component
 	render()
 	{
 		let item = this.props.item;
+        let CardClass = classNames({
+            'Card': true,
+            'col-md-4': this.props.hasColumn
+        });
         const url = '/items/' + item.slug;
 
 		return (
     		<li>
-    			<div className="Card col-md-4">
+    			<div className={CardClass}>
                     { this.isNew() ?
                         <div className="Card__info Item--is-new">
                             <span>New</span>

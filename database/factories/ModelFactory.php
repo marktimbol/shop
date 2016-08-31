@@ -35,6 +35,7 @@ $factory->define(App\Item::class, function (Faker\Generator $faker) {
         'old_price' => $faker->randomNumber(2),
         'price'	=> $faker->randomNumber(2),
         'quantity'  => $faker->randomNumber(2),
+        'featured'  => false,
     ];
 });
 

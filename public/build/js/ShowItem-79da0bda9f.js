@@ -21006,15 +21006,15 @@ exports.default = Item;
 },{"classnames":1,"react":172}],174:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _Item = require('./Item');
 
@@ -21028,40 +21028,323 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Items = function (_React$Component) {
-	_inherits(Items, _React$Component);
+var RelatedItems = function (_React$Component) {
+	_inherits(RelatedItems, _React$Component);
 
-	function Items(props) {
-		_classCallCheck(this, Items);
+	function RelatedItems() {
+		_classCallCheck(this, RelatedItems);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Items).call(this, props));
-
-		_this.state = {
-			formWasSubmitted: false
-		};
-		return _this;
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(RelatedItems).apply(this, arguments));
 	}
 
-	_createClass(Items, [{
+	_createClass(RelatedItems, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			$('.RelatedItems').owlCarousel({
+				items: 5
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
-			var items = window.items.map(function (item, index) {
-				return _react2.default.createElement(_Item2.default, { key: index, item: item, hasColumn: true });
+			var relatedItems = this.props.relatedItems.map(function (item, index) {
+				return _react2.default.createElement(_Item2.default, { key: index, item: item, hasColumn: false });
 			});
 
 			return _react2.default.createElement(
 				'ul',
-				{ className: 'Cards' },
-				items
+				{ className: 'RelatedItems Cards' },
+				relatedItems
 			);
 		}
 	}]);
 
-	return Items;
+	return RelatedItems;
 }(_react2.default.Component);
 
-_reactDom2.default.render(_react2.default.createElement(Items, null), document.getElementById('Items'));
+exports.default = RelatedItems;
 
-},{"./Item":173,"react":172,"react-dom":28}]},{},[174]);
+},{"./Item":173,"react":172}],175:[function(require,module,exports){
+'use strict';
 
-//# sourceMappingURL=Items.js.map
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _RelatedItems = require('./RelatedItems');
+
+var _RelatedItems2 = _interopRequireDefault(_RelatedItems);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var csrf_token = $('meta[name="csrf_token"]').attr('content');
+
+var ShowItem = function (_React$Component) {
+	_inherits(ShowItem, _React$Component);
+
+	function ShowItem(props) {
+		_classCallCheck(this, ShowItem);
+
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ShowItem).call(this, props));
+
+		_this.state = {
+			formWasSubmitted: false,
+			quantity: 1
+		};
+		return _this;
+	}
+
+	_createClass(ShowItem, [{
+		key: 'handleSubmit',
+		value: function handleSubmit(e) {
+			e.preventDefault();
+
+			this.setState({
+				formWasSubmitted: true
+			});
+
+			this.addToCart();
+		}
+	}, {
+		key: 'addToCart',
+		value: function addToCart() {
+			$.ajax({
+				url: '/cart',
+				method: 'POST',
+				dataType: 'json',
+				headers: {
+					'X-CSRF-Token': csrf_token
+				},
+				data: {
+					item_id: window.item.id,
+					quantity: this.state.quantity
+				},
+				success: function (result) {
+					this.setState({ formWasSubmitted: false });
+					swal({
+						title: "Shop",
+						text: "Item was added on the cart.",
+						type: "success",
+						showConfirmButton: true,
+						confirmButtonText: 'Okay'
+					});
+				}.bind(this),
+				error: function (xhr, status, err) {
+					swal({
+						title: 'Shop',
+						text: 'A problem was encountered while adding the item in your cart. Please try again.',
+						type: 'error',
+						showConfirmButton: true,
+						confirmButtonText: 'Okay'
+					});
+				}.bind(this)
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this2 = this,
+			    _React$createElement;
+
+			var item = window.item;
+
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'div',
+					{ className: 'row Item' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-4' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'Item__images--container' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'Item__images--main' },
+								_react2.default.createElement('img', { src: '/images/watch.jpg',
+									alt: item.name,
+									title: item.name,
+									className: 'img-responsive' })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'Item__thumbnails' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'Item__thumbnail' },
+									_react2.default.createElement('img', { src: '/images/watch.jpg',
+										alt: item.name,
+										title: item.name,
+										className: 'img-responsive',
+										width: '78', height: '103' })
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-8' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'Item__name' },
+							item.name
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'Item__price--container' },
+							item.price < item.old_price ? _react2.default.createElement(
+								'p',
+								{ className: 'Item__price--old' },
+								'AED ',
+								item.old_price
+							) : _react2.default.createElement(
+								'p',
+								{ className: 'Item__price--new' },
+								'AED ',
+								item.price
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'Item__availability' },
+							_react2.default.createElement(
+								'p',
+								{ className: 'Item__availability--stocks-left' },
+								_react2.default.createElement('i', { className: 'fa fa-database' }),
+								' Only ',
+								item.quantity,
+								' left'
+							),
+							_react2.default.createElement(
+								'p',
+								{ className: 'Item__availability--status' },
+								_react2.default.createElement(
+									'strong',
+									null,
+									'Availability:'
+								),
+								' ',
+								item.quantity > 0 ? _react2.default.createElement(
+									'span',
+									{ className: 'Item--is-available' },
+									'In Stock'
+								) : _react2.default.createElement(
+									'span',
+									{ className: 'Item--is-not-available' },
+									'No Stock'
+								)
+							)
+						),
+						_react2.default.createElement('hr', null),
+						_react2.default.createElement(
+							'p',
+							{ className: 'Item__description' },
+							'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+						),
+						_react2.default.createElement(
+							'form',
+							{ method: 'POST', onSubmit: this.handleSubmit.bind(this) },
+							_react2.default.createElement('input', { type: 'hidden', name: 'item_id', value: item.id }),
+							_react2.default.createElement(
+								'div',
+								{ className: 'row' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-md-3 col-xs-6' },
+									_react2.default.createElement(
+										'div',
+										{ className: 'input-group' },
+										_react2.default.createElement(
+											'span',
+											{ className: 'input-group-btn' },
+											_react2.default.createElement(
+												'button',
+												{ type: 'button', className: 'btn btn-lg btn-default' },
+												'-'
+											)
+										),
+										_react2.default.createElement('input', (_React$createElement = { type: 'text',
+											value: '1',
+											size: '5'
+										}, _defineProperty(_React$createElement, 'value', this.state.quantity), _defineProperty(_React$createElement, 'className', 'form-control input-lg text-center'), _defineProperty(_React$createElement, 'onChange', function onChange(e) {
+											return _this2.setState({ quantity: e.target.value });
+										}), _React$createElement)),
+										_react2.default.createElement(
+											'span',
+											{ className: 'input-group-btn' },
+											_react2.default.createElement(
+												'button',
+												{ type: 'button', className: 'btn btn-lg btn-default' },
+												'+'
+											)
+										)
+									)
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-md-3 col-xs-6' },
+									this.state.formWasSubmitted ? _react2.default.createElement(
+										'button',
+										{ className: 'btn btn-lg btn-default', disabled: true },
+										_react2.default.createElement('i', { className: 'fa fa-spin fa-spinner' }),
+										' Adding to cart'
+									) : _react2.default.createElement(
+										'button',
+										{ className: 'btn btn-lg btn-default' },
+										'Add to cart'
+									)
+								)
+							)
+						)
+					)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-12' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'Subpage__subtitle--container' },
+							_react2.default.createElement(
+								'h3',
+								{ className: 'Subpage__subtitle' },
+								'You might also be interested in'
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(_RelatedItems2.default, { relatedItems: window.relatedItems })
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return ShowItem;
+}(_react2.default.Component);
+
+_reactDom2.default.render(_react2.default.createElement(ShowItem, null), document.getElementById('ShowItem'));
+
+},{"./RelatedItems":174,"react":172,"react-dom":28}]},{},[175]);
+
+//# sourceMappingURL=ShowItem.js.map

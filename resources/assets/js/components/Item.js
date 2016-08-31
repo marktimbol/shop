@@ -41,14 +41,52 @@ class Item extends React.Component
         })
     }
 
+    isNew()
+    {
+        let item = this.props.item;
+        let today = new Date();
+        let updated_at = new Date(item.updated_at);
+
+        let timeDifference = Math.abs(updated_at.getTime() - today.getTime());
+        let dayDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)); 
+
+        return dayDifference < 7 ? true : false;
+    }
+
+    onSale()
+    {
+        let item = this.props.item;
+        return item.price < item.old_price;
+    }
+
+    getDiscountPercentage()
+    {
+        let item = this.props.item;
+        let percentage = (item.old_price - item.price) / item.old_price;
+
+        return -Math.round(percentage * 100);
+    }
+
 	render()
 	{
 		let item = this.props.item;
-		const url = '/items/' + item.slug;
+        const url = '/items/' + item.slug;
 
 		return (
     		<li>
     			<div className="Card col-md-4">
+                    { this.isNew() ?
+                        <div className="Card__info Item--is-new">
+                            <span>New</span>
+                        </div>
+                        : ''
+                    }
+                    { this.onSale() ? 
+                        <div className="Card__info Item--is-onsale">
+                            <span>{this.getDiscountPercentage()}%</span>
+                        </div>
+                        : ''
+                    }
     				<div className="Card_image">
     					<a href={url}>
     						<img src="/images/watch.jpg" 

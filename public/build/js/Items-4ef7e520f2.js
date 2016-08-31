@@ -20804,6 +20804,32 @@ var Item = function (_React$Component) {
             });
         }
     }, {
+        key: 'isNew',
+        value: function isNew() {
+            var item = this.props.item;
+            var today = new Date();
+            var updated_at = new Date(item.updated_at);
+
+            var timeDifference = Math.abs(updated_at.getTime() - today.getTime());
+            var dayDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+            return dayDifference < 7 ? true : false;
+        }
+    }, {
+        key: 'onSale',
+        value: function onSale() {
+            var item = this.props.item;
+            return item.price < item.old_price;
+        }
+    }, {
+        key: 'getDiscountPercentage',
+        value: function getDiscountPercentage() {
+            var item = this.props.item;
+            var percentage = (item.old_price - item.price) / item.old_price;
+
+            return -Math.round(percentage * 100);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var item = this.props.item;
@@ -20815,6 +20841,25 @@ var Item = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'Card col-md-4' },
+                    this.isNew() ? _react2.default.createElement(
+                        'div',
+                        { className: 'Card__info Item--is-new' },
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            'New'
+                        )
+                    ) : '',
+                    this.onSale() ? _react2.default.createElement(
+                        'div',
+                        { className: 'Card__info Item--is-onsale' },
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            this.getDiscountPercentage(),
+                            '%'
+                        )
+                    ) : '',
                     _react2.default.createElement(
                         'div',
                         { className: 'Card_image' },

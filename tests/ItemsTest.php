@@ -9,10 +9,11 @@ class ItemsTest extends TestCase
 {
 	use DatabaseMigrations;
 
-    public function test_it_displays_items_on_the_homepage()
+    public function test_it_displays_the_featured_items_on_the_homepage()
     {
     	$item = factory(App\Item::class)->create();
-
+        // $item->featured();
+        
     	$this->visit('/')
     		->see($item->name);
     }

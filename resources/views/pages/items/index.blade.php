@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('header_styles')
+	<link rel="stylesheet" href="{{ elixir('css/price-slider.css') }}" />
+@endsection
+
 @section('subheader')
 	<div class="Subheader">
 		<h2>Our Products</h2>
@@ -9,22 +13,8 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
-				<h3>Filter</h3>
-				<form method="GET" action="{{ route('shop') }}">
-					<h4>Price</h4>
-					<h4>Brand</h4>
-					@foreach( $brands as $brand )
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="brand[]" value="{{ $brand->id }}" />
-								{{ $brand->name }}
-							</label>
-						</div>
-					@endforeach
-
-					<button class="btn btn-default">Filter</button>
-				</form>
+			<div class="col-md-3 ShopFilters">
+				@include('pages.items._filters')
 			</div>
 			<div class="col-md-9">
 				<div id="Items"></div>
@@ -82,5 +72,6 @@
 @endsection
 
 @section('footer_scripts')
+	<script src="{{ elixir('js/price-slider.js') }}"></script>
 	<script src="{{ elixir('js/Items.js') }}"></script>
 @endsection

@@ -46,13 +46,25 @@ elixir(function(mix) {
             'owl-carousel.js'
         ], 'public/js/carousel.js')
 
+        .styles([
+            bowersPath + 'jquery-ui-slider/jquery-ui.css'
+        ], 'public/css/price-slider.css')
+
+        .scripts([
+            bowersPath + 'jquery-ui-slider/jquery-ui.js',
+            'price-slider.js'
+        ], 'public/js/price-slider.js')
+
         .copy('bower_components/owl-carousel/owl-carousel/grabbing.png', 'public/build/css')
+        .copy('bower_components/jquery-ui-slider/images', 'public/build/css/images')
 
     	.version([
     		'public/css/app.css',
             'public/js/app.js',
             'public/css/carousel.css',
             'public/js/carousel.js',
+            'public/css/price-slider.css',
+            'public/js/price-slider.js',
             'public/js/Items.js',
     		'public/js/Checkout.js',
     	]);

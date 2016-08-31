@@ -20,9 +20,21 @@ class FeaturedItems extends React.Component
 		});
 
 		return (
-			<ul className="FeaturedItems Cards">
-				{ featuredItems }
-			</ul>
+			<div>
+				<div className="container">
+		            <div className="row">
+		                <div className="col-md-12">
+		                    <div className="Subpage__subtitle--container">
+		                        <h2 className="Subpage__subtitle">Featured products</h2>
+		                        <p className="Subpage__subtitle--small">We showcase things what you need</p>
+		                    </div>
+		                </div>
+		            </div>
+				</div>
+				<ul className="FeaturedItems Cards">
+					{ featuredItems }
+				</ul>
+			</div>
 		)
 	}
 }

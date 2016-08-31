@@ -306,6 +306,38 @@ body {
 .Item--is-not-available {
   color: #cc0000; }
 
+.TopCart {
+  position: relative; }
+  .TopCart:hover .TopCart--items {
+    display: block; }
+
+.TopCart--items {
+  left: -130px;
+  width: 300px;
+  height: 350px;
+  padding: 20px;
+  background: #ddd;
+  position: absolute;
+  overflow-y: scroll;
+  display: none; }
+
+.TopCart--item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 15px; }
+
+.TopCart--item-image {
+  -ms-flex: 0.25;
+  flex: 0.25; }
+
+.TopCart--item-name {
+  -ms-flex: 0.75;
+  flex: 0.75;
+  -ms-flex-direction: row;
+  flex-direction: row; }
+
 .Cart .table th {
   text-transform: uppercase; }
 

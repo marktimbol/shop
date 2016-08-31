@@ -1,3 +1,39 @@
+.TopCart {
+	position: relative;
+	&:hover {
+		.TopCart--items {
+			display: block;
+		}
+	}
+}
+
+.TopCart--items {
+	left: -130px;
+	width: 300px;
+	height: 350px;
+	padding: 20px;
+	background: #ddd;
+	position: absolute;
+	overflow-y: scroll;
+	display: none;
+}
+
+.TopCart--item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.TopCart--item-image {
+	flex: 0.25;
+	// margin-right: 10px;
+}
+
+.TopCart--item-name {
+	flex: 0.75;
+	flex-direction: row;
+}
+
 .Cart {
 	.table {
 		th { 

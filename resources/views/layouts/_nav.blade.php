@@ -1,3 +1,5 @@
+    @inject('cart', 'App\ShoppingCart\ShoppingCart')
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -45,6 +47,37 @@
                             </ul>
                         </li>
                     @endif
+
+                    <li class="TopCart">
+                        <a href="{{ url('/cart') }}">
+                            <i class="fa fa-shopping-basket"></i>
+                        </a>
+                        <div class="TopCart--items">
+                            @foreach( $cart->all() as $item )
+                            <div class="TopCart--item">
+                                <div class="TopCart--item-image">
+                                    <img src="/images/watch-small.jpg" alt="" title="" class="img-responsive" />
+                                </div>
+                                <div class="TopCart--item-name">
+                                    <h5>{{ $item->name }}</h5>
+                                    <h6>AED {{ $item->price }}</h6>
+                                </div>
+                                <div class="TopCart--item-action">
+                                    <span>&times;</span>
+                                </div>
+                            </div>
+                            @endforeach
+
+                            <hr />
+                            <h4>Total: AED {{ $cart->subtotal() }}</h4>
+                            <hr />
+
+                            <p>
+                                <a href="/cart" class="btn btn-default">Cart</a>
+                                <a href="/checkout" class="btn btn-default">Checkout</a>
+                            </p>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

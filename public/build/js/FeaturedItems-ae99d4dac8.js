@@ -20838,9 +20838,39 @@ var FeaturedItems = function (_React$Component) {
 			});
 
 			return _react2.default.createElement(
-				'ul',
-				{ className: 'FeaturedItems Cards' },
-				featuredItems
+				'div',
+				null,
+				_react2.default.createElement(
+					'div',
+					{ className: 'container' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-md-12' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'Subpage__subtitle--container' },
+								_react2.default.createElement(
+									'h2',
+									{ className: 'Subpage__subtitle' },
+									'Featured products'
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'Subpage__subtitle--small' },
+									'We showcase things what you need'
+								)
+							)
+						)
+					)
+				),
+				_react2.default.createElement(
+					'ul',
+					{ className: 'FeaturedItems Cards' },
+					featuredItems
+				)
 			);
 		}
 	}]);

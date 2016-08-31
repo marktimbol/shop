@@ -109,65 +109,9 @@
                 	</figure>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="Subpage__subtitle--container">
-                        <h2 class="Subpage__subtitle">Featured products</h2>
-                        <p class="Subpage__subtitle--small">We showcase things what you need</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div id="FeaturedItems"></div>
-
-{{--         <ul id="FeaturedItems" class="Cards">
-        	@foreach($items as $item)
-        		<li>
-        			<div class="Card">
-                        @if( $item->isNew())
-            				<div class="Card__info Item--is-new">
-            					<span>New</span>
-            				</div>
-                        @endif
-                        @if( $item->isOnSale() )
-            				<div class="Card__info Item--is-onsale">
-            					<span>{{ $item->getDiscountPercentage() }}%</span>
-            				</div>
-                        @endif
-        				<div class="Card_image">
-        					<a href="{{ route('items.show', $item->slug) }}">
-        						<img src="/images/watch.jpg" 
-        							alt="{{ $item->name }}" 
-        							title="{{ $item->name }}" 
-        							class="img-responsive" />
-        					</a>
-        				</div>
-
-        				<div class="Card__content">
-        					<h3 class="Card__title">{{ $item->name }}</h3>
-        					<div class="Card__price">
-        						<h4 class="Card__price--new">AED {{ $item->price }}</h4>
-                                @if( $item->price < $item->old_price )
-        						  <h5 class="Card__price--old">AED {{ $item->old_price }}</h5>
-                                @endif
-        					</div>
-        				</div>
-
-        				<div class="Card__action">
-        					<form method="POST" action="{{ route('cart.store') }}">
-        						{{ csrf_field() }}
-        						<input type="hidden" name="item_id" value="{{ $item->id }}" />
-        						<div class="form-group">
-        							<button class="btn btn-default">Add to cart</button>
-        						</div>
-        					</form>
-        				</div>
-        			</div>
-        		</li>
-        	@endforeach
-        </ul> --}}
 
         <div class="container">
             <div class="row">

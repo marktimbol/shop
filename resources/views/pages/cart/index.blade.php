@@ -59,7 +59,9 @@
 						</tfoot>
 					</table>
 
-					<a href="/checkout" class="btn btn-default">Checkout</a>
+					<p class="text-center">
+						<a href="/checkout" class="btn btn-lg btn-default">Checkout</a>
+					</p>
 				@else
 					<h4>Shopping cart is empty</h4>
 					<p>You have no items in your shopping cart.</p>

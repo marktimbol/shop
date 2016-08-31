@@ -12,7 +12,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        factory(App\Item::class, 10)->create();
+        factory(App\Item::class, 10)->create([
+            'featured'  => true
+        ]);
         
         factory(App\User::class)->create([
             'email' => 'mark@timbol.com',

@@ -23,6 +23,10 @@ elixir(function(mix) {
         ], 'public/js/ShowItem.js')        
 
         .browserify([
+            '/components/Items/FeaturedItems.js'
+        ], 'public/js/FeaturedItems.js')
+
+        .browserify([
             '/components/Items/RelatedItems.js'
         ], 'public/js/RelatedItems.js')
 
@@ -76,6 +80,7 @@ elixir(function(mix) {
             'public/js/price-slider.js',
             'public/js/Items.js',
             'public/js/ShowItem.js',
+            'public/js/FeaturedItems.js',
             'public/js/RelatedItems.js',
     		'public/js/Checkout.js',
     	]);

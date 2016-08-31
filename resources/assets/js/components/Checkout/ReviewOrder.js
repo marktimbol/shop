@@ -23,6 +23,7 @@ class ReviewOrder extends React.Component
 	render()
 	{	
 		let state = this.state;
+
 		let orders = Object.keys(state.orders).map((item, index) => {
 			return (
 				<ReviewOrderItem 
@@ -51,10 +52,10 @@ class ReviewOrder extends React.Component
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colSpan="3">
+								<td colSpan="2">
 									<h5 className="text-right">Total</h5>
 								</td>
-								<td>
+								<td colSpan="2">
 									<h5>AED {window.subtotal}</h5>
 								</td>
 							</tr>

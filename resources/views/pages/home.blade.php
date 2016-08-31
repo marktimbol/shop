@@ -120,7 +120,9 @@
             </div>
         </div>
 
-        <ul id="FeaturedItems" class="Cards">
+        <div id="FeaturedItems"></div>
+
+{{--         <ul id="FeaturedItems" class="Cards">
         	@foreach($items as $item)
         		<li>
         			<div class="Card">
@@ -165,7 +167,7 @@
         			</div>
         		</li>
         	@endforeach
-        </ul>
+        </ul> --}}
 
         <div class="container">
             <div class="row">
@@ -182,4 +184,5 @@
 
 @section('footer_scripts')
     <script src="{{ elixir('js/carousel.js') }}"></script>
+    <script src="{{ elixir('js/FeaturedItems.js') }}"></script>
 @endsection

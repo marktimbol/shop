@@ -25,7 +25,8 @@ class ShoppingCart
 
 	public function subtotal()
 	{
-		return (double) Cart::subtotal();
+		return Cart::subtotal();
+		// return Cart::subtotal($decimals, $decimalSeperator, $thousandSeperator);
 	}
 
 	public function count()

@@ -149,10 +149,10 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="3">
+									<td colspan="2">
 										<h5 class="text-right">Total</h5>
 									</td>
-									<td>
+									<td colspan="2">
 										<h5>AED {{ $subtotal }}</h5>
 									</td>
 								</tr>

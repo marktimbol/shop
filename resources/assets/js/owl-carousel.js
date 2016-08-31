@@ -1,3 +1,3 @@
-$('#FeaturedItems').owlCarousel({
-	items: 5
-});
+// $('.FeaturedItems').owlCarousel({
+// 	items: 5
+// });

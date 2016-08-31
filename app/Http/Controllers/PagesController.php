@@ -10,7 +10,12 @@ class PagesController extends Controller
 {
     public function home()
     {
-    	$items = Item::featured()->latest()->get();
-    	return view('pages.home', compact('items'));
+    	$featuredItems = Item::featured()->latest()->get();
+
+    	\JavaScript::put([
+    		'featuredItems'	=> $featuredItems
+    	]);
+
+    	return view('pages.home', compact('items', 'featuredItems'));
     }
 }

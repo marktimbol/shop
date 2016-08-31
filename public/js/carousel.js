@@ -1510,7 +1510,7 @@ if (typeof Object.create !== "function") {
         afterLazyLoad: false
     };
 }(jQuery, window, document));
-$('#FeaturedItems').owlCarousel({
-	items: 5
-});
+// $('.FeaturedItems').owlCarousel({
+// 	items: 5
+// });
 //# sourceMappingURL=carousel.js.map

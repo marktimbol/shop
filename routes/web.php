@@ -54,3 +54,7 @@ Route::post(
 	'stripe/webhook',
 	'\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
 );
+
+// New to 5.3
+Auth::routes();
+

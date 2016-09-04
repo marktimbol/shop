@@ -31,6 +31,7 @@ class CartController extends Controller
     	$this->cart->store($item, $request->quantity);
 
     	return $this->cart->all();
+    	
     	// flash()->success('Item was added on the cart.');
 
     	// return back();

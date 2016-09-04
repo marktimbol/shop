@@ -14,7 +14,7 @@
 			</div>
 
 			<div class="col-md-9">
-				<h2>Order ID: {{ $order->id }}</h2>
+				<h2>Order ID: THE-ORDER-ID-HERE</h2>
 
 				<table class="table table-bordered">
 					<thead>

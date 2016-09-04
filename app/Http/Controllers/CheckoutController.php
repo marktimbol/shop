@@ -61,9 +61,11 @@ class CheckoutController extends Controller
 
     	// Create the order for the customer
     	$order = $user->orders()->create([
-    		'date'	=> Carbon::now(),
+    		'date'	=> Carbon::now()->toDateString(),
     		'paid'	=> $request->payment === 'card' ? 1 : 0,
     	]);
+
+        // dd($order);
 
     	// Store the detailed order on the order details table
         foreach( $this->cart->all() as $item )
